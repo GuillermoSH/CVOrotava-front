@@ -1,0 +1,19 @@
+#index-wrapper {
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}
+
+.img-wrapper {
+    background: url('../../../assets/imgs/blob-haikei.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+#about-us {
+    background: linear-gradient(180deg, rgb(52, 40, 90) 0%, rgb(59, 130, 246) 100%);
+}
+
+#contact {
+    background: linear-gradient(180deg, rgb(59, 130, 246) 0%, rgb(212, 212, 212) 100%);
+}

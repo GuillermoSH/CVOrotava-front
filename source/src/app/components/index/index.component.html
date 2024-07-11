@@ -1,0 +1,61 @@
+<div id="index-wrapper" class="min-h-screen w-screen">
+  <header
+    class="fixed z-50 w-full h-[60px] bg-main/60 border-b-2 border-b-neutral-50 flex backdrop-blur-sm justify-between items-center px-3 text-lg"
+  >
+    <img
+      src="../../../assets/imgs/LogoRedondoClubVolei.png"
+      class="h-9"
+      alt="Logo Club"
+    />
+    <nav class="text-neutral-50 flex items-center gap-6 h-full">
+      <a
+        href="#welcome"
+        class="h-9 flex justify-center items-center hover:bg-blue-500/50 w-40 duration-200 rounded-md"
+        id="a-welcome"
+        >Inicio</a
+      >
+      <a
+        href="#about-us"
+        class="h-9 flex justify-center items-center hover:bg-blue-500/50 w-40 duration-200 rounded-md"
+        id="a-about-us"
+        >Sobre nosotros</a
+      >
+      <a
+        href="#contact"
+        class="h-9 flex justify-center items-center hover:bg-blue-500/50 w-40 duration-200 rounded-md"
+        id="a-contact"
+        >Contacto</a
+      >
+
+      <a
+        class="bg-blue-500 px-5 h-9 rounded-md flex justify-center items-center gap-2 [&>*:first-child]:hover:animate-pulse [&>*:first-child]:hover:text-main"
+        [routerLink]="['/login']"
+      >
+        Iniciar sesión
+        <i class="fa-solid fa-arrow-right-from-bracket duration-200"></i>
+      </a>
+    </nav>
+  </header>
+  <section
+    class="h-screen w-full bg-main flex justify-center items-center text-neutral-100 px-14"
+    id="welcome"
+  >
+    <div
+      class="img-wrapper h-full aspect-[16/9] w-[930px] flex justify-center items-center bg-neutral-100"
+    >
+      <img
+        src="../../../assets/imgs/LogoFondoClubVolei(patrocinios).png"
+        class="h-[250px] object-cover mb-10"
+        alt="Logo Club"
+      />
+    </div>
+    <div class="flex flex-col gap-3" style="transform: translateX(-10%)">
+      <h1 class="text-6xl font-serif italic font-bold">
+        "Con nosotros el deporte es más"
+      </h1>
+      <h2 class="text-lg font-bold font-serif">~ Guillermo Sicilia Matos</h2>
+    </div>
+  </section>
+  <section class="h-screen w-full bg-blue-500" id="about-us"></section>
+  <section class="h-screen w-full bg-neutral-300" id="contact"></section>
+</div>

@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    @apply font-nunito
+}
+
+:root {
+    min-height: 100vh;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+:root::-webkit-scrollbar {
+    display: none;
+}
+
+.hiddenplus {
+    display: none !important;
+}
+
+.disabled {
+    pointer-events: none;
+    @apply bg-neutral-600;
+}

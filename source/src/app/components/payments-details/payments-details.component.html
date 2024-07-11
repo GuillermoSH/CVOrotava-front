@@ -1,0 +1,174 @@
+<!-- ******************************************************** SPINNER ******************************************************* -->
+<section id="payment-details-spinner" class="h-full w-full flex justify-center items-center">
+    <img src="../../../assets/imgs/Volleyball-PNG.webp" class="h-16 drop-shadow-2xl animate-[spin_1.5s_infinite]">
+</section>
+
+<section class="min-h-full w-full flex flex-col gap-3 md:gap-5 bg-gray-50 shadow-xl rounded-xl p-3 md:p-5 hidden"
+    id="payment-details">
+    <section class="flex flex-wrap gap-3 md:gap-5 w-full bg-green-100/80 rounded-lg p-3 md:p-5 shadow-lg sticky">
+        <div class="w-full flex justify-between items-center gap-3 md:gap-5 flex-wrap">
+            <div class="text-sm sm:text-base md:text-lg lg:text-xl font-bold" *ngIf="payment.month > 9; else elseMonth">
+                {{payment.concept + " - " + payment.month + "/" + payment.year}}
+            </div>
+            <ng-template #elseMonth>
+                <div class="text-sm sm:text-base md:text-lg lg:text-xl font-bold">
+                    {{payment.concept + " - 0" + payment.month + "/" + payment.year}}
+                </div>
+            </ng-template>
+            <a [routerLink]="['/dashboard/payments']"
+                class="border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-gray-50 duration-200 px-3 py-1 rounded-lg flex gap-2 justify-center items-center text-sm md:text-base font-semibold md:hidden"
+                id="btn-details-back">
+                <i class="fa-solid fa-arrow-left-long"></i>
+            </a>
+            <div class="self-end flex gap-3 md:gap-5 w-full md:w-max justify-between md:justify-start">
+                <button
+                    class="bg-green-500 hover:bg-green-700 duration-200 w-[1/2fr] min-w-max text-neutral-50 px-3 py-1 rounded-lg flex gap-2 justify-center items-center text-sm md:text-base font-semibold [&>*:last-child]:hover:animate-lateralBounce"
+                    id="btn-edit-payment" (click)="toggleUpdateModal()">
+                    <span>Editar</span>
+                    <i class="fa-solid fa-pencil"></i>
+                </button>
+                <button
+                    class="w-[1/2fr] min-w-max bg-red-500 hover:bg-red-700 duration-200 text-neutral-50 px-3 py-1 rounded-lg flex gap-2 justify-center items-center text-sm md:text-base font-semibold [&>*:nth-child(3)]:hover:animate-shake"
+                    id="btn-delete-payment" (click)="deletePayment()">
+                    <span>Eliminar</span>
+                    <span class="hiddenplus">Eliminando...</span>
+                    <i class="fa-solid fa-trash"></i>
+                    <i class="fa-solid fa-spinner fa-spin hiddenplus"></i>
+                </button>
+                <a [routerLink]="['/dashboard/payments']"
+                    class="border-2 border-green-700 text-green-700 hover:bg-green-700 hover:text-gray-50 duration-200 px-3 py-1 rounded-lg gap-2 justify-center items-center text-sm md:text-base font-semibold hidden md:flex"
+                    id="btn-details-back">
+                    <span>Volver atrás</span>
+                    <i class="fa-solid fa-arrow-left-long"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+    <div class="flex items-center justify-between flex-wrap gap-3">
+        <h1 class="mt-5 font-extrabold text-sm sm:text-base md:text-lg lg:text-xl">Jugadores que han pagado:</h1>
+        <form (submit)="searchPayers()" class="flex overflow-hidden rounded-xl h-8 shadow-md mx-auto md:mx-0">
+            <input type="text" placeholder="¿A quién buscas?" (keyup)="searchPayers()"
+                class="px-3 outline-none border-[1px] border-transparent focus:border-green-500 rounded-ss-xl rounded-es-xl"
+                [(ngModel)]="searchedPayerPlayer.name" name="name" #name="ngModel">
+            <button class="bg-green-700 h-full aspect-square flex items-center justify-center">
+                <i class="fa-solid fa-magnifying-glass text-gray-50"></i>
+            </button>
+        </form>
+    </div>
+    <section class="w-full overflow-y-auto flex flex-col gap-3 md:gap-5">
+        <div *ngIf="payment.players.length > 0; else listaNoPagadosVacia"
+            class="w-full overflow-y-auto flex flex-col gap-3 md:gap-5 pb-5">
+            <div *ngFor="let player of payers"
+                class="w-full flex flex-wrap items-center gap-3 md:gap-5 border-s-4 border-s-green-500 hover:bg-green-100/80 duration-200 rounded-lg p-3 shadow-lg">
+                <div class="text-sm md:text-base">
+                    <h1 class="font-extrabold text-xs md:text-sm">Nombre:</h1>
+                    <p>{{player.name + " " + player.surname1 + " " + player.surname2}}</p>
+                </div>
+                <div class="text-sm md:text-base">
+                    <h1 class="font-extrabold text-xs md:text-sm">DNI:</h1>
+                    <p>{{player.dni}}</p>
+                </div>
+                <div class="text-sm md:text-base">
+                    <h1 class="font-extrabold text-xs md:text-sm">Categoría:</h1>
+                    <p>{{player.category}}</p>
+                </div>
+                <button
+                    class="bg-red-500 text-gray-50 h-9 aspect-square ms-auto rounded-md hover:bg-red-700 [&>*:first-child]:hover:animate-shake duration-200"
+                    (click)="deletePlayerFromPayment(player, $event.target)">
+                    <i class="fa-solid fa-trash"></i>
+                    <i class="fa-solid fa-spinner fa-spin hiddenplus"></i>
+                </button>
+            </div>
+        </div>
+        <ng-template #listaNoPagadosVacia>
+            Parece que aún no ha pagado nadie, habrá que recordarselos 😆
+        </ng-template>
+    </section>
+    <div class="flex items-center justify-between flex-wrap gap-3">
+        <h1 class="mt-5 font-extrabold text-sm sm:text-base md:text-lg lg:text-xl">Jugadores no incluidos:</h1>
+        <form (submit)="searchNotPayers()" class="flex overflow-hidden rounded-xl h-8 shadow-md mx-auto md:mx-0">
+            <input type="text" placeholder="¿A quién buscas?" (keyup)="searchNotPayers()"
+                class="px-3 outline-none border-[1px] border-transparent focus:border-green-500 rounded-ss-xl rounded-es-xl"
+                [(ngModel)]="searchedNotPayerPlayer.name" name="name" #name="ngModel">
+            <button class="bg-green-700 h-full aspect-square flex items-center justify-center">
+                <i class="fa-solid fa-magnifying-glass text-gray-50"></i>
+            </button>
+        </form>
+    </div>
+    <section class="w-full overflow-y-auto flex flex-col gap-3 md:gap-5 pb-5">
+        <div *ngFor="let player of notPayers"
+            class="w-full flex flex-wrap items-center gap-3 md:gap-5 border-s-4 border-s-green-500 hover:bg-green-100/80 duration-200 rounded-lg p-3 shadow-lg">
+            <div class="text-sm md:text-base">
+                <h1 class="font-extrabold text-xs md:text-sm">Nombre:</h1>
+                <p>{{player.name + " " + player.surname1 + " " + player.surname2}}</p>
+            </div>
+            <div class="text-sm md:text-base">
+                <h1 class="font-extrabold text-xs md:text-sm">DNI:</h1>
+                <p>{{player.dni}}</p>
+            </div>
+            <div class="text-sm md:text-base">
+                <h1 class="font-extrabold text-xs md:text-sm">Categoría:</h1>
+                <p>{{player.category}}</p>
+            </div>
+            <button
+                class="bg-green-500 text-gray-50 h-9 aspect-square ms-auto rounded-md hover:bg-green-700 duration-200"
+                (click)="addPlayerToPayment(player, $event.target)">
+                <i class="fa-solid fa-plus"></i>
+                <i class="fa-solid fa-spinner fa-spin hiddenplus"></i>
+            </button>
+        </div>
+    </section>
+</section>
+
+<!-- **************************************** UPDATE PAYMENT MODAL **************************************** -->
+<div id="update-payment-modal"
+    class="flex justify-center items-center fixed top-0 right-0 w-screen min-h-screen overflow-y-auto bg-neutral-800/70 backdrop-blur-sm p-3 hidden md:p-5 lg:p-6 z-[25]">
+    <div class="bg-neutral-50 h-max w-full md:w-96 flex flex-wrap gap-5 p-5 relative animate-popup rounded-lg">
+        <button
+            class="text-xl text-main duration-200 absolute top-3 right-3 hover:scale-125 lg:top-5 lg:right-5 w-5 h-5 flex justify-center items-center"
+            (click)="toggleUpdateModal()" id="btn-cancel-update-payment">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <h1 class="text-2xl text-main font-semibold w-full">Editar pago.-</h1>
+        <div class="h-12 border border-main w-full relative flex rounded-lg">
+            <input type="text" [(ngModel)]="payment.quantity" name="quantity" #quantity="ngModel"
+                class="h-full w-full rounded-lg px-3 bg-transparent outline-green-500 focus:outline-green-300 duration-200 outline-2 outline"
+                name="input">
+            <label
+                class="absolute left-0 self-center ms-3 pointer-events-none duration-200 font-semibold translate-y-[-100%] scale-95 px-[5px] text-main bg-neutral-50">Cantidad:</label>
+        </div>
+        <div class="h-12 w-[calc(50%-10px)] relative flex rounded-lg">
+            <select
+                class="w-full h-full bg-transparent outline-green-500 focus:outline-green-300 duration-200 outline-2 outline px-3 border-none capitalize rounded-md duration-200"
+                [(ngModel)]="payment.month" name="month" #month="ngModel">
+                <option [value]="months.indexOf(month) + 1" *ngFor="let month of months">
+                    {{ month }}
+                </option>
+            </select>
+            <label
+                class="absolute left-0 self-center ms-3 pointer-events-none duration-200 font-semibold translate-y-[-100%] scale-95 px-[5px] text-main bg-neutral-50">Mes:</label>
+        </div>
+        <div class="h-12 w-[calc(50%-10px)] relative flex rounded-lg">
+            <input type="text" [(ngModel)]="payment.year" name="year" #year="ngModel"
+                class="h-full w-full rounded-lg px-3 bg-transparent outline-green-500 focus:outline-green-300 duration-200 outline-2 outline"
+                name="input">
+            <label
+                class="absolute left-0 self-center ms-3 pointer-events-none duration-200 font-semibold translate-y-[-100%] scale-95 px-[5px] text-main bg-neutral-50">Año:</label>
+        </div>
+        <div class="h-24 w-full relative flex rounded-lg">
+            <textarea [(ngModel)]="payment.concept" name="concept" #concept="ngModel"
+                class="h-full w-full resize-none rounded-lg p-3 bg-transparent outline-green-500 focus:outline-green-300 duration-200 outline-2 outline"
+                name="input"></textarea>
+            <label
+                class="absolute left-0 self-center ms-3 pointer-events-none duration-200 font-semibold top-[-13px] scale-95 px-[5px] text-main bg-neutral-50">Concepto:</label>
+        </div>
+        <button
+            class="w-full bg-green-500 text-neutral-50 h-12 rounded-lg text-lg font-semibold flex gap-2 justify-center items-center"
+            id="btn-update-payment" (click)="updatePayment()">
+            <span>Guardar</span>
+            <span class="hiddenplus">Guardando...</span>
+            <i class="fa-solid fa-save"></i>
+            <i class="fa-solid fa-spinner fa-spin hiddenplus"></i>
+        </button>
+    </div>
+</div>

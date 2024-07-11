@@ -1,0 +1,49 @@
+<div class="grid grid-rows-[minmax(192px,max-content)_1fr] gap-5 w-full h-full">
+  <div class="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 content-center">
+    <div id="total-players-card"
+      class="h-36 md:h-48 shadow-gray-300 shadow-lg rounded-xl p-5 flex relative bg-gray-50 border-b-[6px] border-blue-500">
+      <h1 class="text-base md:text-xl font-semibold text-blue-500">Numero total de jugadores:</h1>
+      <div
+        class="absolute w-[calc(100%-40px)] h-[calc(100%-34px)] flex justify-around items-center text-5xl md:text-6xl text-blue-500 hidden"
+        id="players-count">
+        <div class="flex items-center gap-1 relative w-max">
+          {{ totalNumPlayers.TFem }}
+          <img src="../../../assets/imgs/volleyball-player.svg" class="h-10 w-10 md:h-12 md:w-12" alt="Woman" />
+          <span class="absolute bottom-[-20px] text-center text-lg w-full">FEM</span>
+        </div>
+        <div class="flex items-center gap-1 relative w-max">
+          {{ totalNumPlayers.TMas }}
+          <img src="../../../assets/imgs/volleyball-player (1).svg" class="h-10 w-10 md:h-12 md:w-12" alt="Man" />
+          <span class="absolute bottom-[-20px] text-center text-lg w-full">MAS</span>
+        </div>
+      </div>
+      <div class="absolute w-[calc(100%-40px)] h-[calc(100%-34px)] flex justify-around items-center"
+        id="players-count-squeleton">
+        <div class="flex items-center gap-1 relative w-max">
+          <div class="h-10 md:h-12 aspect-square bg-gradient-to-tr from-gray-300 to-gray-200 my-2 rounded-md animate-squeleton"></div>
+          <div class="h-10 w-10 md:h-12 md:w-12 bg-gradient-to-tr from-gray-300 to-gray-200 rounded-md animate-squeleton"></div>
+          <div class="absolute bottom-[-12px] h-4 w-full text-lg bg-gradient-to-tr from-gray-300 to-gray-200 rounded-md animate-squeleton"></div>
+        </div>
+        <div class="flex items-center gap-1 relative w-max">
+          <div class="h-10 md:h-12 aspect-square bg-gradient-to-tr from-gray-300 to-gray-200 my-2 rounded-md animate-squeleton"></div>
+          <div class="h-10 w-10 md:h-12 md:w-12 bg-gradient-to-tr from-gray-300 to-gray-200 rounded-md animate-squeleton"></div>
+          <div class="absolute bottom-[-12px] h-4 w-full text-lg bg-gradient-to-tr from-gray-300 to-gray-200 rounded-md animate-squeleton"></div>
+        </div>
+      </div>
+    </div>
+    <div
+      class="h-36 md:h-48 shadow-gray-300 shadow-lg rounded-xl p-5 relative bg-gray-50 border-b-[6px] border-yellow-500">
+      <h1 class="text-xl font-semibold text-yellow-500">Información incompleta:</h1>
+
+    </div>
+    <div
+      class="h-36 md:h-48 shadow-gray-300 shadow-lg rounded-xl p-5 relative bg-gray-50 border-b-[6px] border-red-500 md:col-span-2 lg:col-span-1">
+      <h1 class="text-xl font-semibold text-red-500">Morosidad:</h1>
+
+    </div>
+  </div>
+  <div
+    class="min-h-[400px] shadow-gray-300 shadow-lg rounded-xl p-5 relative bg-gray-50 border-b-[6px] border-green-500">
+    a
+  </div>
+</div>

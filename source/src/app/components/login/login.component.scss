@@ -1,0 +1,14 @@
+input[name="input"]:valid,
+input[name="input"]:focus {
+    @apply outline-blue-500;
+    @apply outline-2;
+    @apply outline;
+
+    &~label,
+    &~label {
+        transform: translateY(-100%) scale(0.95);
+        padding-inline: 5px;
+        @apply text-blue-500;
+        @apply bg-neutral-50;
+    }
+}

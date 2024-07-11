@@ -1,0 +1,46 @@
+<button class="hidden md:flex duration-200 delay-100 h-5 w-5" id="burguer-btn">
+  <i class="fa-solid fa-bars text-lg text-main"></i>
+</button>
+<button
+  class="hidden md:flex duration-200 delay-100 h-5 w-5 hiddenplus"
+  id="xmark-btn"
+>
+  <i class="fa-solid fa-xmark text-lg text-main"></i>
+</button>
+<div
+  class="hidden absolute right-0 top-[50px] bg-neutral-300 p-2 rounded-es-lg text-main font-semibold opacity-0 duration-150 delay-100 animate-dropdown"
+  id="profile-dropdown"
+>
+  <ul class="flex flex-col gap-2">
+    <li
+      class="py-1 px-5 flex gap-3 items-center hover:bg-blue-500 hover:text-neutral-300 [&>*:first-child]:text-blue-500 [&>*:first-child]:hover:text-neutral-300 duration-200 cursor-pointer rounded-lg"
+      (click)="toggleDropdown()"
+      [routerLink]="['/dashboard/profile']"
+    >
+      <i class="fa-solid fa-id-card h-5 aspect-square"></i>
+      <span class="">Ver perfil</span>
+    </li>
+    <li
+      class="py-1 px-5 flex gap-3 items-center hover:bg-red-700 hover:text-neutral-300 [&>*:first-child]:text-red-700 [&>*:first-child]:hover:text-neutral-300 duration-200 cursor-pointer rounded-lg"
+      (click)="logout()"
+    >
+      <i
+        class="fa-solid fa-right-from-bracket h-5 aspect-square text-red-600"
+      ></i>
+      Cerrar sesión
+    </li>
+  </ul>
+</div>
+
+<div
+  class="flex justify-center items-center ms-auto gap-3 cursor-pointer [&>*:first-child]:hover:scale-105"
+  id="profile-icon"
+  (click)="toggleDropdown()"
+>
+  <img
+    class="h-9 rounded-full border-2 border-main duration-200"
+    src="../../../assets/imgs/foto_perfil_ejemplo.webp"
+    alt="Foto de perfil"
+  />
+  <i class="fa-solid fa-caret-down text-main text-xl duration-200"></i>
+</div>

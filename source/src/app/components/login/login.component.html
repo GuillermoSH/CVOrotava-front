@@ -1,0 +1,62 @@
+<div
+  class="h-screen w-screen bg-neutral-300 flex justify-center items-center text-main p-6"
+>
+  <form 
+    (submit)="checkForm()"
+    class="w-full md:w-[430px] min-h-max bg-zinc-50 rounded-xl shadow-2xl flex flex-col items-center gap-3 md:gap-6 p-6 md:p-10 pb-16 md:pb-20 relative animate-popup"
+  >
+    <img
+      class="h-28"
+      src="../../../assets/imgs/LogoCuadradoClubVolei(sin fondo).png"
+      alt="Logo CVOrotava"
+    />
+    <div class="h-12 border border-main w-full relative flex rounded-lg">
+      <input
+        required
+        type="text"
+        name="input"
+        autocomplete="off"
+        class="h-full w-full rounded-lg px-3 bg-transparent"
+      />
+      <label
+        class="absolute left-0 self-center ms-3 pointer-events-none duration-200 font-semibold"
+        >Nombre de usuario</label
+      >
+    </div>
+    <div class="h-12 border border-main w-full relative flex rounded-lg">
+      <input
+        required
+        type="text"
+        name="input"
+        autocomplete="off"
+        class="h-full w-full rounded-lg px-3 bg-transparent"
+      />
+      <label
+        class="absolute left-0 self-center ms-3 pointer-events-none duration-200 font-semibold"
+        >Contraseña</label
+      >
+    </div>
+    <div class="font-bold text-sm md:text-base">
+      ¿Has olvidado la contraseña?
+      <a
+        class="hover:text-blue-500 duration-200 hover:underline"
+        [routerLink]="['/recover-pass']"
+      >
+        Recuérdamela
+      </a>
+    </div>
+    <button
+      class="bg-blue-500 text-neutral-50 px-7 py-2 rounded-md [&>*:first-child]:hover:rotate-180 text-xl font-semibold hover:scale-105 duration-200"
+      type="submit"
+    >
+      Empezar
+      <i class="fa-solid fa-volleyball duration-200"></i>
+    </button>
+    <a
+      class="absolute h-5 aspect-square flex justify-center items-center top-5 right-5 text-xl"
+      [routerLink]="['/']"
+    >
+      <i class="fa-solid fa-xmark text-main"></i>
+    </a>
+  </form>
+</div>

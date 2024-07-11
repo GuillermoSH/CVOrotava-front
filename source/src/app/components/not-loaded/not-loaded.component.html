@@ -1,0 +1,29 @@
+<div class="w-full h-full flex flex-col items-center justify-center gap-6">
+  <h1 class="text-xl w-2/5 text-center text-main font-semibold">
+    {{ loaderErrorMsg }}
+  </h1>
+  <button
+    onclick="location.reload()"
+    id="btn-reload"
+    class="bg-blue-500 text-neutral-50 font-medium [&>*:first-child]:hover:rotate-[360deg] px-4 py-2 rounded-md mb-5"
+  >
+    Recargar la pagina
+    <i class="fa-solid fa-rotate-right duration-500"></i>
+  </button>
+  <button
+    (click)="showPlayerModal()"
+    id="btn-show_player_modal"
+    class="bg-blue-500 text-neutral-50 font-medium [&>*:first-child]:hover:rotate-180 px-4 py-2 rounded-md mb-5 hidden"
+  >
+    Añadir un jugador
+    <i class="fa-solid fa-plus duration-500"></i>
+  </button>
+  <button
+    (click)="showPaymentModal()"
+    id="btn-show_payment_modal"
+    class="bg-green-500 text-neutral-50 font-medium [&>*:first-child]:hover:rotate-180 px-4 py-2 rounded-md mb-5 hidden"
+  >
+    Añadir un pago
+    <i class="fa-solid fa-plus duration-500"></i>
+  </button>
+</div>

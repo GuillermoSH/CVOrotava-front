@@ -1,0 +1,68 @@
+.listed-player-cards {
+
+    &>div {
+        @apply basis-full;
+        @apply p-3;
+
+        &>div {
+            @apply w-max;
+        }
+
+        :nth-child(n+4) {
+            @apply hidden;
+        }
+
+        :nth-child(n+8) {
+            @apply flex;
+        }
+
+        h1 {
+            @apply text-xs;
+        }
+
+        p {
+            @apply text-sm;
+        }
+
+        button {
+            @apply h-8;
+            @apply w-8;
+
+            i {
+                @apply text-base;
+            }
+        }
+    }
+}
+
+@media (width >=768px) {
+    .listed-player-cards {
+        &>div {
+            :nth-child(n+5) {
+                @apply hidden;
+            }
+
+            :nth-child(n+8) {
+                @apply flex;
+            }
+        }
+    }
+}
+
+@media(width >=1024px) {
+    .listed-player-cards {
+        &>div {
+            :nth-child(n+1) {
+                @apply block;
+            }
+
+            h1 {
+                @apply text-sm;
+            }
+
+            p {
+                @apply text-base;
+            }
+        }
+    }
+}

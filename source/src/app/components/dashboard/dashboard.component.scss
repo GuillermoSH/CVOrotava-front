@@ -1,0 +1,36 @@
+:host {
+    display: flex;
+}
+
+:host:has(app-home),
+:host:has(section[id="payment-details"]:not(.hidden)) {
+    @apply bg-gray-200/70;
+}
+
+@media (width >= 768px) {
+    #sidebar-container.active {
+        width: 300px;
+    
+        ~header {
+            #header-logo-wrapper {
+                width: 300px;
+            }
+    
+            app-topbar {
+                width: calc(100% - 300px);
+            }
+        }
+    }
+    
+    #sidebar-container::before {
+        content: "";
+        position: absolute;
+        height: 20px;
+        aspect-ratio: 1/1;
+        background-color: transparent;
+        top: 0;
+        right: -20px;
+        border-radius: 50%;
+        box-shadow: -10px -10px 0px #d4d4d4;
+    }
+}
