@@ -9,8 +9,9 @@ export class Player {
 	address: string;
 	birthday: string;
 	category: string;
+	image: string;
 
-	constructor(id: string = "", dni: string = "", name: string = "", surname1: string = "", surname2: string = "", telephone: string = "", email: string = "", address: string = "", birthday: string = "", category: string = "") {
+	constructor(id: string = "", dni: string = "", name: string = "", surname1: string = "", surname2: string = "", telephone: string = "", email: string = "", address: string = "", birthday: string = "", category: string = "", image: string = "") {
 		this.id = id;
 		this.dni = dni;
 		this.name = name;
@@ -21,5 +22,6 @@ export class Player {
 		this.address = address;
 		this.birthday = birthday;
 		this.category = category;
+		this.image = image;
 	}
 }

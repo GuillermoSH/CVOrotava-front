@@ -17,6 +17,7 @@ export class PlayersComponent {
   categories: string[] = [];
   updatedPlayer: Player = new Player();
   newPlayer: Player = new Player();
+  test: Player = new Player();
 
   constructor(private playerService: PlayersService) { }
 
@@ -192,6 +193,7 @@ export class PlayersComponent {
     let notLoadedWrapper = document.getElementsByTagName('app-not-loaded')[0];
     this.playerService.getPlayers().subscribe({
       next: (players: Player[]) => {
+        this.test = players[1];
         if (players.length < 1) {
           this.loaderErrorMsg =
             'Parece que no existen jugadores aún. ¡Es hora de formar un equipo!';
@@ -360,21 +362,10 @@ export class PlayersComponent {
     });
   }
 
-  toggleListMode() {
-    document
-      .getElementById('players-list')
-      ?.classList.toggle('listed-player-cards');
-    document
-      .getElementById('list-mode-btn')
-      ?.children[0].classList.toggle('hiddenplus');
-    document
-      .getElementById('list-mode-btn')
-      ?.children[1].classList.toggle('hiddenplus');
-    document
-      .getElementById('list-mode-btn')
-      ?.children[0].classList.toggle('opacity-0');
-    document
-      .getElementById('list-mode-btn')
-      ?.children[1].classList.toggle('opacity-0');
+  showPlayerImage(player: Player) {
+    if (player.image) {
+      return player.image
+    }
+    return "assets/imgs/foto_perfil_ejemplo.jpg"
   }
 }
