@@ -21,6 +21,8 @@ import { DateFormatPipe } from './pipes/date-format.pipe';
 import { NotLoadedComponent } from './components/not-loaded/not-loaded.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { PaymentsDetailsComponent } from './components/payments-details/payments-details.component';
+import { EquipmentsComponent } from './components/equipments/equipments.component';
+import { EquipmentsDetailsComponent } from './components/equipments-details/equipments-details.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { PaymentsDetailsComponent } from './components/payments-details/payments
     DateFormatPipe,
     NotLoadedComponent,
     PaymentComponent,
-    PaymentsDetailsComponent
+    PaymentsDetailsComponent,
+    EquipmentsComponent,
+    EquipmentsDetailsComponent,
   ],
   imports: [
     BrowserModule,

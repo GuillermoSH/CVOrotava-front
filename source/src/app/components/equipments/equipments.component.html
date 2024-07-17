@@ -1,0 +1,190 @@
+<!-- ******************************************************** SPINNER ******************************************************* -->
+<section
+  id="equipment-spinner"
+  class="h-full w-full flex justify-center items-center"
+>
+  <img
+    src="../../../assets/imgs/Volleyball-PNG.webp"
+    class="h-16 animate-[spin_1.5s_infinite]"
+    alt="Volleyball-spinner"
+  />
+</section>
+
+<!-- ****************************************************** NOT LOADED ****************************************************** -->
+<app-not-loaded
+  class="hidden"
+  [loaderErrorMsg]="loaderErrorMsg"
+></app-not-loaded>
+
+<!-- **************************************************** PAYMENTS LIST ***************************************************** -->
+<section class="w-full h-full hidden" id="equipment-wrapper">
+  <section
+    class="grid grid-cols-[auto_1fr_auto] grid-rows-2 lg:grid-rows-1 gap-3 md:gap-5 mb-3 md:mb-5 sticky top-[63px] md:top-[70px] z-[5]"
+  >
+    <button
+      (click)="toggleSaveModal()"
+      class="bg-indigo-500 hover:bg-indigo-700 duration-200 drop-shadow-lg text-neutral-50 font-medium text-sm md:text-base [&>*:first-child]:hover:rotate-180 px-2 py-1 md:px-4 md:py-2 rounded-md lg:order-1"
+    >
+      Añadir equipación
+      <i class="fa-solid fa-plus duration-500"></i>
+    </button>
+    <div class="lg:hidden"></div>
+    <button
+      (click)="deleteAll()"
+      class="bg-red-500 hover:bg-red-700 duration-200 drop-shadow-lg text-neutral-50 font-medium text-sm md:text-base [&>*:first-child]:hover:animate-shake px-2 py-1 md:px-4 md:py-2 rounded-md lg:order-3"
+    >
+      Borrar equipación
+      <i class="fa-solid fa-trash duration-500"></i>
+    </button>
+    <div
+      class="flex justify-center items-center rounded-full drop-shadow-lg overflow-hidden lg:order-2 row-start-2 lg:row-start-1 col-span-3 lg:col-span-1 lg:col-start-2"
+    >
+      <div
+        class="relative flex justify-center items-center w-full md:w-max rounded-full"
+      >
+        <input
+          class="h-7 md:h-8 text-sm md:text-base border-2 border-indigo-500 px-3 rounded-ss-full rounded-es-full w-[calc(100%-30px)] md:w-[400px] outline-none focus:border-indigo-800 duration-200 placeholder:text-neutral-500"
+          type="text"
+          placeholder="¿Qué andas buscando?"
+          (keyup.enter)="searchEquipments()"
+          id="search-input"
+        />
+        <button
+          class="absolute right-[42px] text-neutral-500 hover:text-neutral-800 duration-200"
+          (click)="resetSearch()"
+        >
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <button
+          class="h-7 md:h-8 text-sm md:text-base bg-indigo-500 aspect-square rounded-se-full rounded-ee-full flex items-center justify-center pe-[2px] duration-200"
+          name="search"
+          (click)="searchEquipments()"
+        >
+          <i class="fa-solid fa-magnifying-glass text-lg text-slate-50"></i>
+        </button>
+      </div>
+    </div>
+  </section>
+  <section class="w-full flex flex-wrap gap-5">
+    <div
+      *ngFor="let equipment of equipments"
+      class="text-xs md:text-sm basis-full lg:basis-[calc(50%-10px)] flex flex-wrap items-center gap-3 md:gap-5 p-3 md:p-5 shadow-lg rounded-xl border-s-4 border-s-indigo-500 hover:bg-indigo-100/80 duration-200 hover:scale-[1.005]"
+    >
+      <div class="w-12">
+        <h1 class="font-extrabold">Talla:</h1>
+        <p class="text-base md:text-lg">{{ equipment.size }}</p>
+      </div>
+      <div class="w-20">
+        <h1 class="font-extrabold">Tipo:</h1>
+        <p class="text-base md:text-lg">{{ equipment.type }}</p>
+      </div>
+      <div class="w-24">
+        <h1 class="font-extrabold">Color:</h1>
+        <p class="capitalize text-base md:text-lg">{{ equipment.color }}</p>
+      </div>
+      <div class="w-32">
+        <h1 class="font-extrabold">Uso:</h1>
+        <p class="capitalize text-base md:text-lg">{{ equipment.use }}</p>
+      </div>
+      <div class="ms-auto flex gap-3 md:gap-5 text-base md:text-lg">
+        <a
+          class="bg-indigo-500 h-8 md:h-10 w-8 md:w-10 rounded-md hover:bg-indigo-700 duration-200 [&>*:first-child]:hover:animate-lateralBounce flex items-center justify-center"
+          routerLink="/dashboard/equipments/{{ equipment.id }}"
+        >
+          <i class="fa-solid fa-arrow-right text-neutral-50"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+</section>
+
+<!-- **************************************** NEW PAYMENT MODAL **************************************** -->
+<div
+  id="new-equipment-modal"
+  class="flex justify-center items-center fixed top-0 right-0 w-screen min-h-screen overflow-y-auto bg-neutral-800/70 backdrop-blur-sm hidden p-3 md:p-5 lg:p-6 z-[25]"
+>
+  <div
+    class="bg-neutral-50 h-max w-full md:w-96 flex flex-wrap gap-5 p-5 relative animate-popup rounded-lg"
+  >
+    <button
+      class="text-xl text-main duration-200 absolute top-3 right-3 hover:scale-125 lg:top-5 lg:right-5 w-5 h-5 flex justify-center items-center"
+      (click)="toggleSaveModal()"
+      id="btn-cancel-save-equipment"
+    >
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+    <h1 class="text-2xl text-main font-semibold w-full">Añadir equipación.-</h1>
+    <div class="h-12 border border-main w-full relative flex rounded-lg">
+      <select
+        class="w-full h-full bg-transparent outline-indigo-500 focus:outline-indigo-300 outline-2 outline px-3 border-none capitalize rounded-md duration-200"
+        [(ngModel)]="newEquipment.size"
+        name="size"
+        #size="ngModel"
+      >
+        <option [value]="size" *ngFor="let size of equipment_sizes">
+          {{ size }}
+        </option>
+      </select>
+      <label
+        class="absolute left-0 self-center ms-3 pointer-events-none duration-200 font-semibold translate-y-[-100%] scale-95 px-[5px] text-main bg-neutral-50"
+        >Talla:</label
+      >
+    </div>
+    <div class="h-12 border border-main w-full relative flex rounded-lg">
+      <select
+        class="w-full h-full bg-transparent outline-indigo-500 focus:outline-indigo-300 outline-2 outline px-3 border-none capitalize rounded-md duration-200"
+        [(ngModel)]="newEquipment.type"
+        name="type"
+        #type="ngModel"
+      >
+        <option [value]="type" *ngFor="let type of equipment_types">
+          {{ type }}
+        </option>
+      </select>
+      <label
+        class="absolute left-0 self-center ms-3 pointer-events-none duration-200 font-semibold translate-y-[-100%] scale-95 px-[5px] text-main bg-neutral-50"
+        >Tipo:</label
+      >
+    </div>
+    <div class="h-12 w-full relative flex rounded-lg">
+      <input
+        type="text"
+        [(ngModel)]="newEquipment.color"
+        name="color"
+        #color="ngModel"
+        class="h-full w-full rounded-lg px-3 bg-transparent outline-indigo-500 outline-2 outline"
+        name="input"
+      />
+      <label
+        class="absolute left-0 self-center ms-3 pointer-events-none duration-200 font-semibold translate-y-[-100%] scale-95 px-[5px] text-main bg-neutral-50"
+        >Color:</label
+      >
+    </div>
+    <div class="h-12 w-full relative flex rounded-lg">
+      <select
+        class="w-full h-full bg-transparent outline-indigo-500 focus:outline-indigo-300 outline-2 outline px-3 border-none capitalize rounded-md duration-200"
+        [(ngModel)]="newEquipment.use"
+        name="use"
+        #use="ngModel"
+      >
+        <option [value]="use" *ngFor="let use of equipment_uses">
+          {{ use }}
+        </option>
+      </select>
+      <label
+        class="absolute left-0 self-center ms-3 pointer-events-none duration-200 font-semibold top-[-13px] scale-95 px-[5px] text-main bg-neutral-50"
+        >Uso:</label
+      >
+    </div>
+    <button
+      class="w-full bg-indigo-500 text-neutral-50 h-12 rounded-lg text-lg font-semibold flex gap-2 justify-center items-center"
+      id="btn-save-equipment"
+      (click)="saveNewEquipment()"
+    >
+      <span>Guardar</span>
+      <span class="hiddenplus">Guardando...</span>
+      <i class="fa-solid fa-save"></i>
+      <i class="fa-solid fa-spinner fa-spin hiddenplus"></i>
+    </button>
+  </div>
+</div>
