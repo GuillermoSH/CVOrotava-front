@@ -1840,6 +1840,10 @@ video {
   background-color: rgb(185 28 28 / var(--tw-bg-opacity));
 }
 
+.hover\:bg-blue-100\/60:hover {
+  background-color: rgb(219 234 254 / 0.6);
+}
+
 .hover\:text-blue-500:hover {
   --tw-text-opacity: 1;
   color: rgb(59 130 246 / var(--tw-text-opacity));
@@ -2403,4 +2407,48 @@ video {
 
 .\[\&\>\*\:nth-child\(3\)\]\:hover\:animate-shake:hover>*:nth-child(3) {
   animation: shake 0.3s ease-out;
+}
+
+.\[\&\>button\>i\]\:hover\:opacity-100:hover>button>i {
+  opacity: 1;
+}
+
+.\[\&\>button\]\:hover\:h-8:hover>button {
+  height: 2rem;
+}
+
+.\[\&\>button\]\:hover\:h-9:hover>button {
+  height: 2.25rem;
+}
+
+.\[\&\>button\]\:hover\:w-8:hover>button {
+  width: 2rem;
+}
+
+.\[\&\>button\]\:hover\:scale-110:hover>button {
+  --tw-scale-x: 1.1;
+  --tw-scale-y: 1.1;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+@keyframes lateralBounce {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  33% {
+    transform: rotate(-45deg);
+  }
+
+  66% {
+    transform: rotate(15deg);
+  }
+
+  100% {
+    tranform: rotate(0deg);
+  }
+}
+
+.\[\&\>button\]\:hover\:animate-lateralBounce:hover>button {
+  animation: lateralBounce 0.3s ease-out;
 }
