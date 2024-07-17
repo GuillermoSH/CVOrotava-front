@@ -38,7 +38,7 @@
   </section>
   <section id="players-list" class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
     <div *ngFor="let player of players"
-      class="relative z-0 rounded-lg max-w-full min-w-[calc(1/3*100%)] bg-neutral-300/60 hover:bg-blue-100/60 duration-200 flex items-center gap-5 p-5 h-full w-full overflow-hidden [&>button]:hover:h-9 [&>button>i]:hover:opacity-100">
+      class="relative z-0 rounded-lg max-w-full min-w-[calc(1/3*100%)] bg-neutral-300/60 hover:bg-blue-100/60 duration-200 flex items-center gap-5 p-5 h-full w-full overflow-hidden [&>button]:hover:h-9 [&>span]:hover:bg-blue-100 [&>span]:hover:top-[-90px] [&>span]:hover:right-[150px] [&>button>i]:hover:opacity-100">
       <div class="w-20 aspect-square rounded-full overflow-hidden">
         <img class="h-full w-full" [src]="showPlayerImage(player)" alt="">
       </div>
@@ -52,7 +52,7 @@
           <div class="font-bold">{{player.category}}</div><div>{{player.birthday}}</div>
         </div>
       </div>
-      <span class="rand-circle absolute bg-blue-100/50 h-56 aspect-square rounded-full right-[43px] top-[-8px] -z-[10] blur-xl"></span>
+      <span class="rand-circle absolute bg-blue-100/50 h-56 aspect-square rounded-full right-[43px] top-[-8px] -z-[10] blur-xl duration-500"></span>
     </div>
   </section>
 </div>

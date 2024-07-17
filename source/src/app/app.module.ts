@@ -23,6 +23,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { PaymentsDetailsComponent } from './components/payments-details/payments-details.component';
 import { EquipmentsComponent } from './components/equipments/equipments.component';
 import { EquipmentsDetailsComponent } from './components/equipments-details/equipments-details.component';
+import { ConfigurationComponent } from './components/configuration/configuration.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { EquipmentsDetailsComponent } from './components/equipments-details/equi
     PaymentsDetailsComponent,
     EquipmentsComponent,
     EquipmentsDetailsComponent,
+    ConfigurationComponent,
   ],
   imports: [
     BrowserModule,

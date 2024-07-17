@@ -12,6 +12,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { PaymentsDetailsComponent } from './components/payments-details/payments-details.component';
 import { EquipmentsComponent } from './components/equipments/equipments.component';
 import { EquipmentsDetailsComponent } from './components/equipments-details/equipments-details.component';
+import { ConfigurationComponent } from './components/configuration/configuration.component';
 
 const routes: Routes = [
   { path: "", component: IndexComponent, data: { title: "Web Oficial CVOrotava" } },
@@ -27,7 +28,7 @@ const routes: Routes = [
       { path: "players", component: PlayersComponent, data: { title: "CVOrotava - Jugadores" } },
       { path: "equipments", component: EquipmentsComponent, data: { title: "CVOrotava - Equipaciones" } },
       // { path: "equipments/:id", component: EquipmentsDetailsComponent, data: { title: "CVOrotava - Detalles equipacion" } },
-      // { path: "settings", component: SettingsComponent, data: { title: "CVOrotava - Configuración" } },
+      { path: "configuration", component: ConfigurationComponent, data: { title: "CVOrotava - Configuración" } },
     ]
   },
   { path: "**", redirectTo: "error..." }

@@ -1,0 +1,70 @@
+<h1 class="font-bold text-3xl mb-3">Sección de configuración:</h1>
+<section class="flex flex-col gap-3 rounded-xl border-b-4 border-b-blue-500 p-6 shadow-lg mb-3">
+    <h1 class="text-xl font-bold">Categorías y edades en voleibol:</h1>
+    <span class="text-neutral-400 text-sm">Última modificación: {{configuration.mod_date}}</span>
+    <section class="text-black flex flex-wrap gap-y-2 gap-x-6">
+        <div *ngFor="let cathegoryYear of cathegoryYears">
+            <h2 class="font-semibold">{{cathegoryYear.cathegory}}</h2>
+            <p class="text-sm">{{getCathegoryYears(cathegoryYear.year)}}</p>
+        </div>
+        <button (click)="toggleUpdateCathegoryYearsModal()"
+            class="ms-auto h-10 text-xl self-center text-neutral-50 aspect-square rounded-md bg-blue-500 hover:bg-blue-700 duration-200 [&>*:first-child]:hover:animate-lateralBounce">
+            <i class="fa-solid fa-pencil"></i>
+        </button>
+    </section>
+</section>
+<section class="flex flex-col gap-3 rounded-xl border-b-4 border-b-orange-500 p-6 shadow-lg mb-3">
+    <h1 class="text-xl font-bold">Notificaciones:</h1>
+    <div class="flex flex-wrap items-center gap-y-2 gap-x-6">
+        <div>
+            <h2 class="text-neutral-400 text-sm">Correos de notificación:</h2>
+            <p>{{configuration.notification_emails}}</p>
+        </div>
+        <button (click)="toggleUpdateNotificationEmailsModal()"
+            class="ms-auto h-10 text-xl self-center text-neutral-50 aspect-square rounded-md bg-orange-500 hover:bg-orange-700 duration-200 [&>*:first-child]:hover:animate-lateralBounce">
+            <i class="fa-solid fa-pencil"></i>
+        </button>
+    </div>
+</section>
+
+<!-- ********************************************** CATHEGORY YEARS MODAL ********************************************** -->
+<section id="cathegory-years-modal" class="flex justify-center items-center fixed top-0 right-0 w-screen h-screen bg-neutral-800/80 backdrop-blur-sm p-3 lg:p-6 hidden z-[25] overflow-y-auto">
+    <form class="bg-neutral-50 w-[500px] max-w-full p-3 md:p-6 rounded-md relative animate-popup flex flex-col gap-3" (submit)="saveCathegoryYearChanges()">
+        <h1 class="text-lg md:text-2xl font-bold">Cambio de años de las categorías:</h1>
+        <div class="flex flex-wrap cathegory-years-wrapper">
+            <div class="flex-grow-[1] p-2 md:p-3 flex flex-col-reverse rounded-md duration-200">
+                <input type="text" [(ngModel)]="configuration.benjamin_year" name="benjamin_year" #benjamin_year="ngModel" class="w-full bg-neutral-50 outline-none border-2 border-blue-500 rounded-md indent-2 duration-200">
+                <h2 class="font-semibold duration-200">Benjamín:</h2>
+            </div>
+            <div class="flex-grow-[1] p-2 md:p-3 flex flex-col-reverse rounded-md duration-200">
+                <input type="text" [(ngModel)]="configuration.alevin_year" name="alevin_year" #alevin_year="ngModel" class="w-full bg-neutral-50 outline-none border-2 border-blue-500 rounded-md indent-2 duration-200">
+                <h2 class="font-semibold duration-200">Alevín:</h2>
+            </div>
+            <div class="flex-grow-[1] p-2 md:p-3 flex flex-col-reverse rounded-md duration-200">
+                <input type="text" [(ngModel)]="configuration.infantil_year" name="infantil_year" #infantil_year="ngModel" class="w-full bg-neutral-50 outline-none border-2 border-blue-500 rounded-md indent-2 duration-200">
+                <h2 class="font-semibold duration-200">Infantil:</h2>
+            </div>
+            <div class="flex-grow-[1] p-2 md:p-3 flex flex-col-reverse rounded-md duration-200">
+                <input type="text" [(ngModel)]="configuration.cadete_year" name="cadete_year" #cadete_year="ngModel" class="w-full bg-neutral-50 outline-none border-2 border-blue-500 rounded-md indent-2 duration-200">
+                <h2 class="font-semibold duration-200">Cadete:</h2>
+            </div>
+            <div class="flex-grow-[1] p-2 md:p-3 flex flex-col-reverse rounded-md duration-200">
+                <input type="text" [(ngModel)]="configuration.juvenil_year" name="juvenil_year" #juvenil_year="ngModel" class="w-full bg-neutral-50 outline-none border-2 border-blue-500 rounded-md indent-2 duration-200">
+                <h2 class="font-semibold duration-200">Juvenil:</h2>
+            </div>
+            <div class="flex-grow-[1] p-2 md:p-3 flex flex-col-reverse rounded-md duration-200">
+                <input type="text" [(ngModel)]="configuration.junior_year" name="junior_year" #junior_year="ngModel" class="w-full bg-neutral-50 outline-none border-2 border-blue-500 rounded-md indent-2 duration-200">
+                <h2 class="font-semibold duration-200">Junior:</h2>
+            </div>
+        </div>
+        <button type="submit" id="cathegory-years-save-btn" class="w-full bg-blue-500 flex gap-3 justify-center items-center text-neutral-50 font-semibold text-lg rounded-md py-2 hover:bg-blue-700 duration-200">
+            <span>Guardar</span>
+            <span class="hiddenplus">Guardando</span>
+            <i class="fa-solid fa-save"></i>
+            <i class="fa-solid fa-spinner fa-spin hiddenplus"></i>
+        </button>
+        <button type="button" (click)="toggleUpdateCathegoryYearsModal()" id="close-cathegory-years-btn" class="[&>*:first-child]:hover:rotate-180 absolute top-2 right-2 flex justify-center items-center h-5 aspect-square text-lg">
+            <i class="fa-solid fa-xmark duration-200"></i>
+        </button>
+    </form>
+</section>
