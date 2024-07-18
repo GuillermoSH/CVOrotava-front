@@ -2215,10 +2215,6 @@ video {
     padding-inline-start: 5px;
   }
 
-  .md\:pt-3 {
-    padding-top: 0.75rem;
-  }
-
   .md\:pt-\[70px\] {
     padding-top: 70px;
   }
@@ -2574,42 +2570,12 @@ video {
   height: 2.25rem;
 }
 
-.\[\&\>span\]\:hover\:right-\[100px\]:hover>span {
-  right: 100px;
-}
-
-.\[\&\>span\]\:hover\:top-\[10px\]:hover>span {
-  top: 10px;
-}
-
-.\[\&\>span\]\:hover\:right-\[200px\]:hover>span {
-  right: 200px;
-}
-
 .\[\&\>span\]\:hover\:right-\[150px\]:hover>span {
   right: 150px;
 }
 
-.\[\&\>span\]\:hover\:top-\[-20px\]:hover>span {
-  top: -20px;
-}
-
-.\[\&\>span\]\:hover\:top-\[-50px\]:hover>span {
-  top: -50px;
-}
-
 .\[\&\>span\]\:hover\:top-\[-90px\]:hover>span {
   top: -90px;
-}
-
-.\[\&\>span\]\:hover\:bg-blue-400:hover>span {
-  --tw-bg-opacity: 1;
-  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
-}
-
-.\[\&\>span\]\:hover\:bg-blue-200:hover>span {
-  --tw-bg-opacity: 1;
-  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
 }
 
 .\[\&\>span\]\:hover\:bg-blue-100:hover>span {

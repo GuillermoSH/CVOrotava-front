@@ -33,7 +33,7 @@ export class PlayersService {
   }
 
   savePlayer(player: Player): Observable<Player> {
-    return this._http.post<Player>(this.url, player);
+    return this._http.post<Player>(this.url + "/save", player);
   }
 
   updatePlayer(player: Player): Observable<Player> {
