@@ -18,7 +18,6 @@ export class PlayersComponent {
   categories: string[] = [];
   updatedPlayer: Player = new Player();
   newPlayer: Player = new Player();
-  test: Player = new Player();
 
   constructor(private playerService: PlayersService) { }
 
@@ -194,15 +193,14 @@ export class PlayersComponent {
     let notLoadedWrapper = document.getElementsByTagName('app-not-loaded')[0];
     this.playerService.getPlayers().subscribe({
       next: (players: Player[]) => {
-        this.test = players[1];
-        if (players.length < 1) {
+        if (!players) {
           this.loaderErrorMsg =
             'Parece que no existen jugadores aún. ¡Es hora de formar un equipo!';
           wrapper?.classList.add('hidden');
           notLoadedWrapper?.classList.remove('hidden');
           spinner?.classList.add('hidden');
           document.getElementById('btn-reload')?.classList.add('hidden');
-          document.getElementById('btn-show_modal')?.classList.remove('hidden');
+          document.getElementById('btn-show_player_modal')?.classList.remove('hidden');
         } else {
           this.players = players;
           spinner?.classList.add('hidden');
