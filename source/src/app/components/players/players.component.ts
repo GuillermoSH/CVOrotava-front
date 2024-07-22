@@ -3,6 +3,7 @@ import { Player } from 'src/app/models/player.model';
 import { PlayersService } from 'src/app/services/players.service';
 import Swal from 'sweetalert2';
 import { NotLoadedComponent } from '../not-loaded/not-loaded.component';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-players',
@@ -364,8 +365,8 @@ export class PlayersComponent {
 
   showPlayerImage(player: Player) {
     if (player.image) {
-      return player.image
+      return environment.imagesEndpoint + player.image
     }
-    return "assets/imgs/foto_perfil_ejemplo.jpg"
+    return "assets/imgs/foto_perfil_default.webp"
   }
 }

@@ -1259,6 +1259,10 @@ video {
   border-width: 2px;
 }
 
+.border-\[0\.5px\] {
+  border-width: 0.5px;
+}
+
 .border-\[1px\] {
   border-width: 1px;
 }
@@ -1281,6 +1285,11 @@ video {
 
 .border-none {
   border-style: none;
+}
+
+.border-blue-400 {
+  --tw-border-opacity: 1;
+  border-color: rgb(96 165 250 / var(--tw-border-opacity));
 }
 
 .border-blue-500 {
@@ -1427,8 +1436,8 @@ video {
   background-color: rgb(212 212 212 / var(--tw-bg-opacity));
 }
 
-.bg-neutral-300\/60 {
-  background-color: rgb(212 212 212 / 0.6);
+.bg-neutral-300\/70 {
+  background-color: rgb(212 212 212 / 0.7);
 }
 
 .bg-neutral-50 {
@@ -1911,8 +1920,12 @@ video {
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
 
-.hover\:bg-blue-100\/60:hover {
-  background-color: rgb(219 234 254 / 0.6);
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
+}
+
+.hover\:bg-blue-100\/70:hover {
+  background-color: rgb(219 234 254 / 0.7);
 }
 
 .hover\:bg-blue-500:hover {
@@ -2215,10 +2228,6 @@ video {
     padding-inline-start: 5px;
   }
 
-  .md\:pt-3 {
-    padding-top: 0.75rem;
-  }
-
   .md\:pt-\[70px\] {
     padding-top: 70px;
   }
@@ -2390,6 +2399,22 @@ video {
   .\32xl\:grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
+}
+
+.\[\&\:nth-child\(1\)\]\:hover\:h-9:hover:nth-child(1) {
+  height: 2.25rem;
+}
+
+.\[\&\:nth-child\(2\)\]\:hover\:h-9:hover:nth-child(2) {
+  height: 2.25rem;
+}
+
+.\[\&\>\#cosito\>i\]\:hover\:opacity-100:hover>#cosito>i {
+  opacity: 1;
+}
+
+.\[\&\>\#cosito\]\:hover\:h-9:hover>#cosito {
+  height: 2.25rem;
 }
 
 .\[\&\>\*\:first-child\]\:text-blue-500>*:first-child {
@@ -2574,45 +2599,27 @@ video {
   height: 2.25rem;
 }
 
-.\[\&\>span\]\:hover\:right-\[100px\]:hover>span {
-  right: 100px;
+.\[\&\>div\:nth-child\(1\)\]\:hover\:h-9:hover>div:nth-child(1) {
+  height: 2.25rem;
 }
 
-.\[\&\>span\]\:hover\:top-\[10px\]:hover>span {
-  top: 10px;
+.\[\&\>div\:nth-child\(2\)\]\:hover\:h-9:hover>div:nth-child(2) {
+  height: 2.25rem;
 }
 
 .\[\&\>span\]\:hover\:right-\[200px\]:hover>span {
   right: 200px;
 }
 
-.\[\&\>span\]\:hover\:right-\[150px\]:hover>span {
-  right: 150px;
+.\[\&\>span\]\:hover\:top-\[-200px\]:hover>span {
+  top: -200px;
 }
 
-.\[\&\>span\]\:hover\:top-\[-20px\]:hover>span {
-  top: -20px;
-}
-
-.\[\&\>span\]\:hover\:top-\[-50px\]:hover>span {
-  top: -50px;
-}
-
-.\[\&\>span\]\:hover\:top-\[-90px\]:hover>span {
-  top: -90px;
-}
-
-.\[\&\>span\]\:hover\:bg-blue-400:hover>span {
-  --tw-bg-opacity: 1;
-  background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+.\[\&\>span\]\:hover\:h-72:hover>span {
+  height: 18rem;
 }
 
 .\[\&\>span\]\:hover\:bg-blue-200:hover>span {
   --tw-bg-opacity: 1;
   background-color: rgb(191 219 254 / var(--tw-bg-opacity));
-}
-
-.\[\&\>span\]\:hover\:bg-blue-100:hover>span {
-  --tw-bg-opacity: 1;
-  background-color: rgb(219 234 254 / var(--tw-bg-opacity));
 }
