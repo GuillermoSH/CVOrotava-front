@@ -829,6 +829,14 @@ video {
   height: 100vh;
 }
 
+.h-\[120px\] {
+  height: 120px;
+}
+
+.max-h-\[120px\] {
+  max-height: 120px;
+}
+
 .min-h-\[400px\] {
   min-height: 400px;
 }
@@ -1575,6 +1583,10 @@ video {
   padding-bottom: 4rem;
 }
 
+.pb-3 {
+  padding-bottom: 0.75rem;
+}
+
 .pb-5 {
   padding-bottom: 1.25rem;
 }
@@ -1758,6 +1770,10 @@ video {
   opacity: 0;
 }
 
+.opacity-100 {
+  opacity: 1;
+}
+
 .shadow-2xl {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
   --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
@@ -1867,7 +1883,6 @@ video {
 }
 
 :root {
-  min-height: 100vh;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -2108,6 +2123,10 @@ video {
     height: calc(100vh - 50px);
   }
 
+  .md\:h-5 {
+    height: 1.25rem;
+  }
+
   .md\:w-10 {
     width: 2.5rem;
   }
@@ -2267,6 +2286,10 @@ video {
     line-height: 1.75rem;
   }
 
+  .md\:opacity-0 {
+    opacity: 0;
+  }
+
   .md\:delay-100 {
     transition-delay: 100ms;
   }
@@ -2401,20 +2424,24 @@ video {
   }
 }
 
-.\[\&\:nth-child\(1\)\]\:hover\:h-9:hover:nth-child(1) {
-  height: 2.25rem;
-}
-
-.\[\&\:nth-child\(2\)\]\:hover\:h-9:hover:nth-child(2) {
-  height: 2.25rem;
-}
-
 .\[\&\>\#cosito\>i\]\:hover\:opacity-100:hover>#cosito>i {
   opacity: 1;
 }
 
+@media (min-width: 768px) {
+  .md\:\[\&\>\#cosito\>i\]\:hover\:opacity-100:hover>#cosito>i {
+    opacity: 1;
+  }
+}
+
 .\[\&\>\#cosito\]\:hover\:h-9:hover>#cosito {
   height: 2.25rem;
+}
+
+@media (min-width: 768px) {
+  .md\:\[\&\>\#cosito\]\:hover\:h-9:hover>#cosito {
+    height: 2.25rem;
+  }
 }
 
 .\[\&\>\*\:first-child\]\:text-blue-500>*:first-child {
@@ -2589,22 +2616,6 @@ video {
 
 .\[\&\>\*\:nth-child\(3\)\]\:hover\:animate-shake:hover>*:nth-child(3) {
   animation: shake 0.3s ease-out;
-}
-
-.\[\&\>button\>i\]\:hover\:opacity-100:hover>button>i {
-  opacity: 1;
-}
-
-.\[\&\>button\]\:hover\:h-9:hover>button {
-  height: 2.25rem;
-}
-
-.\[\&\>div\:nth-child\(1\)\]\:hover\:h-9:hover>div:nth-child(1) {
-  height: 2.25rem;
-}
-
-.\[\&\>div\:nth-child\(2\)\]\:hover\:h-9:hover>div:nth-child(2) {
-  height: 2.25rem;
 }
 
 .\[\&\>span\]\:hover\:right-\[200px\]:hover>span {

@@ -35,10 +35,6 @@
     }
 }
 
-#players-list {
-    max-height: calc(100vh - 100px);
-}
-
 @media (width >=768px) {
     .listed-player-cards {
         &>div {
