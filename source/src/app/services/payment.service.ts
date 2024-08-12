@@ -6,42 +6,60 @@ import { Player } from '../models/player.model';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PaymentService {
   private url: string = environment.apiUrl + '/payments';
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) {}
 
   getPayments(): Observable<Payment[]> {
-    return this._http.get<Payment[]>(this.url)
+    return this._http.get<Payment[]>(this.url);
   }
 
   getPaymentById(id: string): Observable<Payment> {
-    return this._http.get<Payment>(this.url + "/" + id)
+    return this._http.get<Payment>(this.url + '/' + id);
   }
 
   savePayment(payment: Payment): Observable<Payment> {
-    return this._http.post<Payment>(this.url, payment);
+    return this._http.post<Payment>(this.url + '/save', payment);
   }
 
   addPlayerToPayment(player: Player, payment_id: string): Observable<Payment> {
-    return this._http.put<Payment>(this.url + "/" + payment_id + "/add/player", player);
+    return this._http.put<Payment>(
+      this.url + '/' + payment_id + '/add/player',
+      player
+    );
   }
 
   updatePayment(payment: Payment): Observable<Payment> {
     return this._http.put<Payment>(this.url, payment);
   }
 
-  deletePayment(id: string): Observable<Payment> {
-    return this._http.delete<Payment>(this.url + "/" + Number(id));
+  deletePayment(payment: Payment): Observable<Payment> {
+    return this._http.request<Payment>('DELETE', this.url + '/delete', {
+      body: payment,
+    });
   }
 
-  deletePlayerFromPayment(player_id: string, payment_id: string): Observable<Payment> {
-    return this._http.delete<Payment>(this.url + "/" + payment_id + "/delete/player/" + player_id);
+  deletePlayerFromPayment(
+    player_id: string,
+    payment_id: string
+  ): Observable<Payment> {
+    return this._http.delete<Payment>(
+      this.url + '/' + payment_id + '/delete/player/' + player_id
+    );
   }
 
   searchBy(search: string): Observable<Payment[]> {
-    return this._http.get<Payment[]>(this.url + "/search/" + search);
+    return this._http.get<Payment[]>(this.url + '/search/' + search);
+  }
+
+  getBySeason(season: string): Observable<Payment[]> {
+    return this._http.get<Payment[]>(this.url + '/season/' + season);
+  }
+
+  getAvailableSeasons(): Observable<string[]> {
+    return this._http.get<string[]>(this.url + '/seasons');
   }
 }

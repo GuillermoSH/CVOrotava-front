@@ -15,11 +15,9 @@
             <i class="fa-solid fa-plus duration-500"></i>
         </button>
         <div class="lg:hidden"></div>
-        <button (click)="deleteAll()"
-            class="bg-red-500 hover:bg-red-700 duration-200 text-neutral-50 font-medium text-sm md:text-base [&>*:first-child]:hover:animate-shake px-2 py-1 md:px-4 md:py-2 rounded-md lg:order-3">
-            Borrar pagos
-            <i class="fa-solid fa-trash duration-500"></i>
-        </button>
+        <select (change)="onSeasonChange($event)" class="bg-slate-200 outline-none px-2 py-1 md:px-4 md:py-2 rounded-md lg:order-3">
+            <option class="" *ngFor="let season of seasons" [ngValue]="season" [selected]="season === currentSeason">{{season}}</option>
+        </select>
         <div
             class="flex justify-center items-center rounded-full overflow-hidden lg:order-2 row-start-2 lg:row-start-1 col-span-3 lg:col-span-1 lg:col-start-2">
             <div class="relative flex justify-center items-center w-full md:w-max rounded-full">
@@ -39,6 +37,7 @@
         </div>
     </section>
     <section class="w-full flex flex-wrap gap-5">
+        <app-not-loaded class="hidden w-full h-[calc(100vh-250px)] md:h-[calc(100vh-200px)]" [loaderErrorMsg]="loaderErrorMsg2"></app-not-loaded>
         <div *ngFor="let payment of payments"
             class="text-xs md:text-sm basis-full lg:basis-[calc(50%-10px)] flex flex-wrap items-center gap-3 md:gap-5 p-3 md:p-5 shadow-lg rounded-xl border-s-4 border-s-green-500 hover:bg-green-100/80 duration-200">
             <div class="w-32">

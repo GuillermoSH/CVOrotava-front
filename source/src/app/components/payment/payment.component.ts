@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { concat } from 'rxjs';
 import { Payment } from 'src/app/models/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
 import { PlayersService } from 'src/app/services/players.service';
@@ -16,13 +17,18 @@ export class PaymentComponent {
   updatedPayment: Payment = new Payment();
   paymentDetails: Payment = new Payment();
   months: string[] = [];
+  seasons: string[] = [];
   loaderErrorMsg: string = '';
+  loaderErrorMsg2: string = '';
+  currentSeason: string = '';
+  selectedSeason: string = '';
 
-  constructor(
-    private paymentService: PaymentService,
-  ) { }
+  constructor(private paymentService: PaymentService) {}
 
   ngOnInit() {
+    let currentYear = new Date().getFullYear();
+    this.currentSeason = currentYear.toString().concat('-', (currentYear + 1).toString());
+    this.selectedSeason = this.currentSeason;
     this.reloadPaymentsData();
     this.months = [
       'enero',
@@ -59,9 +65,7 @@ export class PaymentComponent {
   }
 
   getMonthStr(payment: Payment = this.updatedPayment) {
-    return this.months[
-      this.payments[this.payments.indexOf(payment)].month - 1
-    ];
+    return this.months[this.payments[this.payments.indexOf(payment)].month - 1];
   }
 
   toggleSaveModal() {
@@ -154,30 +158,56 @@ export class PaymentComponent {
     this.reloadPaymentsData();
   }
 
-  deleteAll() { }
+  onSeasonChange(event: Event) {
+    this.selectedSeason = (event.target as HTMLSelectElement).value;
+    this.reloadPaymentsData();
+  }
+
+  generateSeasons() {
+    this.paymentService.getAvailableSeasons().subscribe({
+      next: (seasons: string[]) => {
+        this.seasons = [...seasons];
+        if(!this.seasons.includes(this.currentSeason)) {
+          this.seasons = [...this.seasons, this.currentSeason]
+        }
+      },
+    });
+  }
 
   private reloadPaymentsData() {
     let wrapper = document.getElementById('payment-wrapper');
     let spinner = document.getElementById('payment-spinner');
     let notLoadedWrapper = document.getElementsByTagName('app-not-loaded')[0];
-    this.paymentService.getPayments().subscribe({
+    let notLoadedWrapper2 = document.getElementsByTagName('app-not-loaded')[1];
+    this.paymentService.getBySeason(this.selectedSeason).subscribe({
       next: (payments: Payment[]) => {
-        if (payments.length < 1) {
+        this.generateSeasons();
+        this.payments = payments;
+        if (payments === null) {
+          this.loaderErrorMsg2 = 'No hay pagos aún en esta temporada. ¡Es hora de formalizar un par de ellos!';
+          notLoadedWrapper?.classList.add('hidden');
+          notLoadedWrapper2?.classList.remove('hidden');
+          wrapper?.classList.remove('hidden');
+          document.getElementById('btn-reload')?.classList.add('hidden');
+          document.getElementById('btn-show_payment_modal')?.classList.add('hidden');
+        } else if(payments.length === 0) {
           this.loaderErrorMsg =
-            'Parece que no existen pagos aún. ¡Es hora de formalizar un par de ellos!';
+          'Parece que no existen pagos aún. ¡Es hora de formalizar un par de ellos!';
           wrapper?.classList.add('hidden');
           notLoadedWrapper?.classList.remove('hidden');
-          spinner?.classList.add('hidden');
+          notLoadedWrapper2?.classList.add('hidden');
           document.getElementById('btn-reload')?.classList.add('hidden');
           document
-            .getElementById('btn-show_payment_modal')
-            ?.classList.remove('hidden');
+          .getElementById('btn-show_payment_modal')
+          ?.classList.remove('hidden');
         } else {
-          this.payments = payments;
-          spinner?.classList.add('hidden');
           wrapper?.classList.remove('hidden');
           notLoadedWrapper?.classList.add('hidden');
+          notLoadedWrapper2?.classList.add('hidden');
+          document.getElementById('btn-reload')?.classList.add('hidden');
+          document.getElementById('btn-show_payment_modal')?.classList.add('hidden');
         }
+        spinner?.classList.add('hidden');
       },
       error: () => {
         this.loaderErrorMsg =

@@ -145,7 +145,7 @@ export class PaymentsDetailsComponent {
     btnBack?.classList.toggle('disabled');
     this.transformDisableHideBtns(btnDelete, btnCancel, btnEdit, 'bg-red-700');
 
-    this.paymentService.deletePayment(this.payment.id).subscribe({
+    this.paymentService.deletePayment(this.payment).subscribe({
       next: () => {
         Swal.fire({
           title: `¡Se eliminó el pago!`,
