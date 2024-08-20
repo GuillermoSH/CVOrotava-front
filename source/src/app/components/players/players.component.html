@@ -6,7 +6,7 @@
 <app-not-loaded class="hidden" [loaderErrorMsg]="loaderErrorMsg"></app-not-loaded>
 
 <div id="players-wrapper" class="w-full min-h-max relative hidden">
-  <section class="grid grid-cols-[auto_1fr_auto] grid-rows-2 lg:grid-rows-1 gap-3 md:gap-5 pb-3 md:pb-5 bg-white">
+  <section id="players-actions" class="grid grid-cols-[auto_1fr_auto] grid-rows-2 lg:grid-rows-1 gap-3 md:gap-5 pb-3 md:pb-5 bg-white">
     <button (click)="toggleSaveModal()"
       class="bg-blue-500 hover:bg-blue-700 duration-200 text-neutral-50 font-medium text-sm md:text-base [&>*:first-child]:hover:rotate-180 px-2 py-1 md:px-4 md:py-2 rounded-md lg:order-1">
       Añadir jugador
@@ -34,6 +34,14 @@
           <i class="fa-solid fa-magnifying-glass text-lg text-slate-50"></i>
         </button>
       </div>
+    </div>
+  </section>
+  <section id="tag-list" class="flex flex-wrap gap-3 mb-3 md:mb-5">
+    <div *ngFor="let tag of tagList" class="tag flex-center" (click)="activateTag($event)">
+      <span class="hidden">{{tag.value}}</span>
+      <span>{{tag.label}}</span>
+      <i class="fa-solid fa-plus text-xs"></i>
+      <i class="hiddenplus fa-solid fa-xmark text-xs"></i>
     </div>
   </section>
   <section id="players-list" class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">

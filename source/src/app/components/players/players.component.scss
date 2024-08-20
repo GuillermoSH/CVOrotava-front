@@ -35,6 +35,14 @@
     }
 }
 
+.tag {
+    @apply bg-neutral-200 px-3 py-1 rounded-full gap-2 hover:cursor-pointer text-sm font-semibold order-2 duration-200;
+    
+    &.active {
+        @apply bg-[#f6af3b] order-1;
+    }
+}
+
 @media (width >=768px) {
     .listed-player-cards {
         &>div {

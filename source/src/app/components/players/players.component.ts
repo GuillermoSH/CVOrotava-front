@@ -4,12 +4,14 @@ import { PlayersService } from 'src/app/services/players.service';
 import Swal from 'sweetalert2';
 import { NotLoadedComponent } from '../not-loaded/not-loaded.component';
 import { environment } from 'src/environments/environment.development';
+import { Tag } from 'src/app/models/tag.model';
 
 @Component({
   selector: 'app-players',
   templateUrl: './players.component.html',
   styleUrls: ['./players.component.scss'],
 })
+
 export class PlayersComponent {
   @Input() loaderErrorMsg: string = '';
   @ViewChild(NotLoadedComponent) notLoadedComponent: NotLoadedComponent =
@@ -18,11 +20,17 @@ export class PlayersComponent {
   categories: string[] = [];
   updatedPlayer: Player = new Player();
   newPlayer: Player = new Player();
+  tagList: Tag[] = [];
+
 
   constructor(private playerService: PlayersService) { }
 
   ngOnInit() {
     this.reloadPlayersData();
+    this.initiateStaticValues();
+  }
+
+  initiateStaticValues() {
     this.categories = [
       'BEN MAS',
       'BEN FEM',
@@ -39,6 +47,31 @@ export class PlayersComponent {
       'SEN MAS',
       'SEN FEM',
     ];
+    this.tagList = [
+      {'label': 'Masculino', 'value': 'MAS'},
+      {'label': 'Femenino', 'value': 'FEM'},
+      {'label': 'Senior', 'value': 'SEN'},
+      {'label': 'Junior', 'value': 'JUN'},
+      {'label': 'Juvenil', 'value': 'JUV'},
+      {'label': 'Cadete', 'value': 'CAD'},
+      {'label': 'Infantil', 'value': 'INF'},
+      {'label': 'Alevín', 'value': 'ALE'},
+      {'label': 'Benjamín', 'value': 'BEN'}
+    ]
+  }
+
+  activateTag(targetedTag: Event) {
+    const tagContainer = targetedTag.currentTarget as HTMLElement;
+    tagContainer.classList.toggle('active');
+
+    const plusIcon = tagContainer.querySelector('.fa-plus');
+    const xmarkIcon = tagContainer.querySelector('.fa-xmark');
+
+    if (plusIcon && xmarkIcon) {
+      plusIcon.classList.toggle('hiddenplus');
+      xmarkIcon.classList.toggle('hiddenplus');
+    }
+
   }
 
   transformDisableHideBtns(
