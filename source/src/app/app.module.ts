@@ -12,7 +12,6 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { HomeComponent } from './components/home/home.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { IndexComponent } from './components/index/index.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PlayersComponent } from './components/players/players.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -37,7 +36,6 @@ import { ConfigurationComponent } from './components/configuration/configuration
     HomeComponent,
     NotFoundComponent,
     DashboardComponent,
-    IndexComponent,
     ProfileComponent,
     PlayersComponent,
     DateFormatPipe,

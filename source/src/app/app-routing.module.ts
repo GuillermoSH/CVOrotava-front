@@ -5,7 +5,6 @@ import { HomeComponent } from './components/home/home.component';
 import { StatisticsComponent } from './components/statistics/statistics.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
-import { IndexComponent } from './components/index/index.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PlayersComponent } from './components/players/players.component';
 import { PaymentComponent } from './components/payment/payment.component';
@@ -15,8 +14,8 @@ import { EquipmentsDetailsComponent } from './components/equipments-details/equi
 import { ConfigurationComponent } from './components/configuration/configuration.component';
 
 const routes: Routes = [
-  { path: "", component: IndexComponent, data: { title: "Web Oficial CVOrotava" } },
-  { path: "login", component: LoginComponent, data: { title: "CVOrotava - Log In" } },
+  //{ path: "", component: IndexComponent, data: { title: "Web Oficial CVOrotava" } },
+  { path: "", component: LoginComponent, data: { title: "CVOrotava - Log In" } },
   { path: "error...", component: NotFoundComponent, data: { title: "Vaya..." } },
   {
     path: "dashboard", component: DashboardComponent, children: [
