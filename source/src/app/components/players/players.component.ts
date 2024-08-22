@@ -21,6 +21,7 @@ export class PlayersComponent {
   updatedPlayer: Player = new Player();
   newPlayer: Player = new Player();
   tagList: Tag[] = [];
+  CATEGORY_ORDER: string[] = [];
 
 
   constructor(private playerService: PlayersService) { }
@@ -57,7 +58,8 @@ export class PlayersComponent {
       { 'label': 'Infantil', 'value': 'INF' },
       { 'label': 'Alevín', 'value': 'ALE' },
       { 'label': 'Benjamín', 'value': 'BEN' }
-    ]
+    ];
+    this.CATEGORY_ORDER = ["SEN", "JUN", "JUV", "CAD", "INF", "ALE", "BEN"];
   }
 
   // TODO: pendiente de revision y optimizacion del proceso
@@ -99,14 +101,23 @@ export class PlayersComponent {
     this.playerService.getPlayersOrderBy('category').subscribe((players) => {
       if (categoryQuery) {
         if ((categoryQuery.includes('MAS') || categoryQuery.includes('FEM')) && categoryQuery.length > 3) {
-          this.players = players.filter(player => categoryQuery.includes(player.category.split(' ')[1]) && categoryQuery.includes(player.category.split(' ')[0]));
+          this.players = this.sortByCategory(players.filter(player => categoryQuery.includes(player.category.split(' ')[1]) && categoryQuery.includes(player.category.split(' ')[0])));
         } else {
-          this.players = players.filter(player => categoryQuery.includes(player.category.split(' ')[1]) || categoryQuery.includes(player.category.split(' ')[0]));
+          this.players = this.sortByCategory(players.filter(player => categoryQuery.includes(player.category.split(' ')[1]) || categoryQuery.includes(player.category.split(' ')[0])));
         }
       } else {
         this.reloadPlayersData();
       }
     });
+  }
+
+  sortByCategory(playerList: Player[]) {
+    return playerList.sort((a, b)=> {
+      const indexA = this.CATEGORY_ORDER.indexOf(a.category.split(' ')[0]);
+      const indexB = this.CATEGORY_ORDER.indexOf(b.category.split(' ')[0]);
+
+      return indexA - indexB;
+    })
   }
 
   transformDisableHideBtns(
