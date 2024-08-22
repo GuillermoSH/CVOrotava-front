@@ -37,10 +37,10 @@
     </div>
   </section>
   <section id="tag-list" class="flex flex-wrap gap-3 mb-3 md:mb-5">
-    <div *ngFor="let tag of tagList" class="tag flex-center" (click)="activateTag($event)">
+    <div *ngFor="let tag of tagList" id={{tag.value}} class="tag flex-center" (click)="activateTag($event)">
       <span class="hidden">{{tag.value}}</span>
       <span>{{tag.label}}</span>
-      <i class="fa-solid fa-plus text-xs"></i>
+      <i class="fa-solid fa-tag text-xs"></i>
       <i class="hiddenplus fa-solid fa-xmark text-xs"></i>
     </div>
   </section>

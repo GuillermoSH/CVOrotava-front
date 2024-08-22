@@ -48,30 +48,59 @@ export class PlayersComponent {
       'SEN FEM',
     ];
     this.tagList = [
-      {'label': 'Masculino', 'value': 'MAS'},
-      {'label': 'Femenino', 'value': 'FEM'},
-      {'label': 'Senior', 'value': 'SEN'},
-      {'label': 'Junior', 'value': 'JUN'},
-      {'label': 'Juvenil', 'value': 'JUV'},
-      {'label': 'Cadete', 'value': 'CAD'},
-      {'label': 'Infantil', 'value': 'INF'},
-      {'label': 'Alevín', 'value': 'ALE'},
-      {'label': 'Benjamín', 'value': 'BEN'}
+      { 'label': 'Masculino', 'value': 'MAS' },
+      { 'label': 'Femenino', 'value': 'FEM' },
+      { 'label': 'Senior', 'value': 'SEN' },
+      { 'label': 'Junior', 'value': 'JUN' },
+      { 'label': 'Juvenil', 'value': 'JUV' },
+      { 'label': 'Cadete', 'value': 'CAD' },
+      { 'label': 'Infantil', 'value': 'INF' },
+      { 'label': 'Alevín', 'value': 'ALE' },
+      { 'label': 'Benjamín', 'value': 'BEN' }
     ]
   }
 
   activateTag(targetedTag: Event) {
-    const tagContainer = targetedTag.currentTarget as HTMLElement;
-    tagContainer.classList.toggle('active');
+    const selectedTag = targetedTag.currentTarget as HTMLElement;
+    let categoryQuery = '';
 
-    const plusIcon = tagContainer.querySelector('.fa-plus');
-    const xmarkIcon = tagContainer.querySelector('.fa-xmark');
+    selectedTag.classList.toggle('active');
+
+    const activeTagList = document.querySelectorAll('.tag.active');
+    const plusIcon = selectedTag.querySelector('.fa-tag');
+    const xmarkIcon = selectedTag.querySelector('.fa-xmark');
 
     if (plusIcon && xmarkIcon) {
       plusIcon.classList.toggle('hiddenplus');
       xmarkIcon.classList.toggle('hiddenplus');
     }
 
+    selectedTag.classList.remove('hiddenplus');
+
+    if (selectedTag.id === 'FEM' && selectedTag.classList.contains('active')) {
+      document.getElementById('MAS')?.classList.add('hiddenplus');
+    } else if (selectedTag.id === 'MAS' && selectedTag.classList.contains('active')) {
+      document.getElementById('FEM')?.classList.add('hiddenplus');
+    } else if (!document.getElementById('MAS')?.classList.contains('active') && !document.getElementById('FEM')?.classList.contains('active')) {
+      document.getElementById('MAS')?.classList.remove('hiddenplus');
+      document.getElementById('FEM')?.classList.remove('hiddenplus');
+    }
+
+    activeTagList.forEach(tag => {
+      categoryQuery += tag.id;
+    });
+
+    this.playerService.getPlayersOrderBy('category').subscribe((players) => {
+      if (categoryQuery) {
+        if ((categoryQuery.includes('MAS') || categoryQuery.includes('FEM')) && categoryQuery.length > 3) {
+          this.players = players.filter(player => categoryQuery.includes(player.category.split(' ')[1]) && categoryQuery.includes(player.category.split(' ')[0]));
+        } else {
+          this.players = players.filter(player => categoryQuery.includes(player.category.split(' ')[1]) || categoryQuery.includes(player.category.split(' ')[0]));
+        }
+      } else {
+        this.players = players;
+      }
+    });
   }
 
   transformDisableHideBtns(
