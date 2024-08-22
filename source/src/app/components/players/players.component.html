@@ -23,7 +23,7 @@
       <div class="relative flex justify-center items-center w-full md:w-max">
         <input
           class="h-7 md:h-8 text-sm md:text-base bg-gray-200/75 px-3 rounded-ss-full rounded-es-full w-[calc(100%-32px)] md:w-[400px] outline-none border-[1px] border-transparent focus:border-y-[1px] focus:border-s-[1px] focus:border-main duration-300 placeholder:text-neutral-500"
-          type="text" placeholder="¿A quién buscas?" (keyup)="searchPlayers()" id="search-input" />
+          type="text" placeholder="¿A quién buscas?" (input)="searchPlayers()" id="search-input" />
         <button class="absolute right-[42px] text-neutral-500 hover:text-neutral-800 duration-200"
           (click)="resetSearch()">
           <i class="fa-solid fa-xmark"></i>

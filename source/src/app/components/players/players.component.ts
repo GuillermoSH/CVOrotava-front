@@ -60,13 +60,12 @@ export class PlayersComponent {
     ]
   }
 
+  // TODO: pendiente de revision y optimizacion del proceso
   activateTag(targetedTag: Event) {
     const selectedTag = targetedTag.currentTarget as HTMLElement;
-    let categoryQuery = '';
 
     selectedTag.classList.toggle('active');
 
-    const activeTagList = document.querySelectorAll('.tag.active');
     const plusIcon = selectedTag.querySelector('.fa-tag');
     const xmarkIcon = selectedTag.querySelector('.fa-xmark');
 
@@ -86,6 +85,13 @@ export class PlayersComponent {
       document.getElementById('FEM')?.classList.remove('hiddenplus');
     }
 
+    this.filterByCategory();
+  }
+
+  filterByCategory() {
+    let categoryQuery = '';
+    const activeTagList = document.querySelectorAll('.tag.active');
+
     activeTagList.forEach(tag => {
       categoryQuery += tag.id;
     });
@@ -98,7 +104,7 @@ export class PlayersComponent {
           this.players = players.filter(player => categoryQuery.includes(player.category.split(' ')[1]) || categoryQuery.includes(player.category.split(' ')[0]));
         }
       } else {
-        this.players = players;
+        this.reloadPlayersData();
       }
     });
   }
@@ -283,21 +289,19 @@ export class PlayersComponent {
   }
 
   searchPlayers() {
-    let searchInput = <HTMLInputElement>document.getElementById('search-input');
-    let aux = searchInput.value;
+    const searchInput = document.getElementById('search-input') as HTMLInputElement;
+    const searchValue = searchInput.value;
+    let filteredPlayers;
 
-    if (aux.length < 1) {
-      aux = 'empty';
-    }
+    if (searchValue) {
+      filteredPlayers = this.players.filter(player => {
+        let completeName = player.name.concat(' ', player.surname1, ' ', player.surname2);
+        let normalizedName = completeName.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+        return normalizedName.includes(searchValue.toLowerCase())
+      });
 
-    if (aux.includes('/')) {
-      aux =
-        aux.split('/')[2] + '-' + aux.split('/')[1] + '-' + aux.split('/')[0];
-    }
-
-    this.playerService.searchBy(aux).subscribe((players: Player[]) => {
-      if (players.length != 0) {
-        this.players = players;
+      if (filteredPlayers.length != 0) {
+        this.players = filteredPlayers;
       } else {
         Swal.fire({
           title: 'No se han encontrado resultados',
@@ -312,8 +316,12 @@ export class PlayersComponent {
           timer: 1500,
           showConfirmButton: false,
         });
+
+        this.filterByCategory();
       }
-    });
+    } else {
+      this.filterByCategory();
+    }
   }
 
   resetSearch() {
