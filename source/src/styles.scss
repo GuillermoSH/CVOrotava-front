@@ -809,6 +809,10 @@ video {
   height: 100vh;
 }
 
+.h-6 {
+  height: 1.5rem;
+}
+
 .max-h-\[120px\] {
   max-height: 120px;
 }
@@ -1454,6 +1458,21 @@ video {
 
 .to-gray-200 {
   --tw-gradient-to: #e5e7eb var(--tw-gradient-to-position);
+}
+
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.object-fill {
+  -o-object-fit: fill;
+     object-fit: fill;
 }
 
 .p-2 {
@@ -2359,6 +2378,14 @@ video {
   }
 
   .md\:\[\&\>\#cosito\]\:hover\:h-9:hover>#cosito {
+    height: 2.25rem;
+  }
+
+  .md\:\[\&\>\#details-label\>i\]\:hover\:opacity-100:hover>#details-label>i {
+    opacity: 1;
+  }
+
+  .md\:\[\&\>\#details-label\]\:hover\:h-9:hover>#details-label {
     height: 2.25rem;
   }
 }
