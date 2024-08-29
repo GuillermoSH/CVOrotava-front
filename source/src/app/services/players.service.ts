@@ -37,7 +37,7 @@ export class PlayersService {
   }
 
   updatePlayer(player: Player): Observable<Player> {
-    return this._http.put<Player>(this.url, player);
+    return this._http.post<Player>(this.url + "/save", player);
   }
 
   deletePlayer(player: Player): Observable<Player> {
