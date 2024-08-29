@@ -33,7 +33,7 @@ export class PaymentService {
   }
 
   updatePayment(payment: Payment): Observable<Payment> {
-    return this._http.put<Payment>(this.url, payment);
+    return this._http.post<Payment>(this.url + '/save', payment);
   }
 
   deletePayment(payment: Payment): Observable<Payment> {
