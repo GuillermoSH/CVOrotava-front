@@ -40,8 +40,10 @@ export class PlayersService {
     return this._http.put<Player>(this.url, player);
   }
 
-  deletePlayer(id: string): Observable<Player> {
-    return this._http.delete<Player>(this.url + `/${id}`);
+  deletePlayer(player: Player): Observable<Player> {
+    return this._http.request<Player>('DELETE', this.url + '/delete', {
+      body: player,
+    });
   }
 
   deleteAll() {

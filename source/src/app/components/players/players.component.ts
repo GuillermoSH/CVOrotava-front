@@ -90,7 +90,11 @@ export class PlayersComponent {
     this.filterByCategory();
   }
 
-  filterByCategory() {
+  private filterByCategory() {
+    let wrapper = document.getElementById('players-wrapper');
+    let spinner = document.getElementById('player-spinner');
+    let notLoadedWrapper = document.getElementsByTagName('app-not-loaded')[0];
+
     let categoryQuery = '';
     const activeTagList = document.querySelectorAll('.tag.active');
 
@@ -108,11 +112,14 @@ export class PlayersComponent {
       } else {
         this.reloadPlayersData();
       }
+      spinner?.classList.add('hidden');
+      wrapper?.classList.remove('hidden');
+      notLoadedWrapper?.classList.add('hidden')
     });
   }
 
-  sortByCategory(playerList: Player[]) {
-    return playerList.sort((a, b)=> {
+  private sortByCategory(playerList: Player[]) {
+    return playerList.sort((a, b) => {
       const indexA = this.CATEGORY_ORDER.indexOf(a.category.split(' ')[0]);
       const indexB = this.CATEGORY_ORDER.indexOf(b.category.split(' ')[0]);
 
@@ -355,7 +362,7 @@ export class PlayersComponent {
       'bg-red-700'
     );
 
-    this.playerService.deletePlayer(this.updatedPlayer.id).subscribe({
+    this.playerService.deletePlayer(this.updatedPlayer).subscribe({
       next: () => {
         Swal.fire({
           title: `¡Se eliminó el jugador!`,
@@ -376,7 +383,7 @@ export class PlayersComponent {
           'bg-red-700'
         );
 
-        this.reloadPlayersData();
+        this.filterByCategory();
 
         this.updatedPlayer = new Player();
       },
