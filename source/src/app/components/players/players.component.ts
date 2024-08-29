@@ -387,11 +387,19 @@ export class PlayersComponent {
 
         this.updatedPlayer = new Player();
       },
-      error: () => {
+      error: (error) => {
+        let errorDescription: string = "Se ha producido un error al eliminar el jugador. ";
+
+        if(error.status===0) {
+          errorDescription += "Parece que el servidor no nos está respondiendo, pruebe a recargar la página. Consulte con el desarrollador si el problema persiste.";
+        } else if(error.status===500) {
+          errorDescription += "Parece que el jugador ya no existe, pruebe a recargar la página. Consulte con el desarrollador si el problema persiste.";
+        }
+
         Swal.fire({
           title: 'Error al eliminar',
           icon: 'error',
-          text: 'Se ha producido un error al eliminar el jugador. Parece que el jugador ya no existe, pruebe a recargar la página. Consulte con el desarrollador si el problema persiste.',
+          text: errorDescription,
           showConfirmButton: true,
           confirmButtonColor: '#34285a',
           allowOutsideClick: false,
