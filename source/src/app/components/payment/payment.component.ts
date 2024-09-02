@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { concat } from 'rxjs';
-import { Payment } from 'src/app/models/payment.model';
+import { emptyPayment, Payment, PaymentSchema } from 'src/app/models/payment.model';
 import { PaymentService } from 'src/app/services/payment.service';
 import { PlayersService } from 'src/app/services/players.service';
 import Swal from 'sweetalert2';
@@ -13,9 +13,9 @@ import Swal from 'sweetalert2';
 })
 export class PaymentComponent {
   payments: Payment[] = [];
-  newPayment: Payment = new Payment();
-  updatedPayment: Payment = new Payment();
-  paymentDetails: Payment = new Payment();
+  newPayment: Payment = emptyPayment;
+  updatedPayment: Payment = emptyPayment;
+  paymentDetails: Payment = emptyPayment;
   months: string[] = [];
   seasons: string[] = [];
   loaderErrorMsg: string = '';
@@ -102,7 +102,7 @@ export class PaymentComponent {
           );
           btnSave?.classList.toggle('pointer-events-none');
 
-          this.newPayment = new Payment();
+          this.newPayment = emptyPayment;
           this.reloadPaymentsData();
         }, 2000);
       },

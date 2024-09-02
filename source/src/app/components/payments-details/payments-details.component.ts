@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Payment } from 'src/app/models/payment.model';
+import { emptyPayment, Payment } from 'src/app/models/payment.model';
 import { Player } from 'src/app/models/player.model';
 import { PaymentService } from 'src/app/services/payment.service';
 import { PlayersService } from 'src/app/services/players.service';
@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./payments-details.component.scss']
 })
 export class PaymentsDetailsComponent {
-  payment = new Payment();
+  payment = emptyPayment;
   players: Player[] = [];
   payers: Player[] = [];
   notPayers: Player[] = [];
@@ -166,7 +166,7 @@ export class PaymentsDetailsComponent {
         btnBack?.classList.toggle('disabled');
         btnDelete?.classList.toggle('pointer-events-none');
 
-        this.payment = new Payment();
+        this.payment = emptyPayment;
 
         this.router.navigate(['/dashboard/payments']);
       },
@@ -235,8 +235,10 @@ export class PaymentsDetailsComponent {
     fa_pencil.classList.toggle("hiddenplus");
     fa_spinner.classList.toggle("hiddenplus");
 
+    this.payment.players.push(playerToAdd);
+
     this.paymentService
-      .addPlayerToPayment(playerToAdd, this.payment.id)
+      .addPlayerToPayment(this.payment)
       .subscribe({
         next: () => {
           Swal.fire({
@@ -249,7 +251,6 @@ export class PaymentsDetailsComponent {
             timer: 1500,
           });
 
-          this.payment.players.push(playerToAdd);
           this.notPayers = this.getNotPaidList();
 
           eventClicked.parentElement.classList.toggle("pointer-events-none");

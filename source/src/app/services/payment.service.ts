@@ -25,11 +25,8 @@ export class PaymentService {
     return this._http.post<Payment>(this.url + '/save', payment);
   }
 
-  addPlayerToPayment(player: Player, payment_id: string): Observable<Payment> {
-    return this._http.put<Payment>(
-      this.url + '/' + payment_id + '/add/player',
-      player
-    );
+  addPlayerToPayment(payment: Payment): Observable<Payment> {
+    return this._http.post<Payment>(this.url + '/save', payment);
   }
 
   updatePayment(payment: Payment): Observable<Payment> {

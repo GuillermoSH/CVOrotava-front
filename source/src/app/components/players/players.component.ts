@@ -1,5 +1,5 @@
 import { Component, Input, ViewChild } from '@angular/core';
-import { Player } from 'src/app/models/player.model';
+import { emptyPlayer, Player } from 'src/app/models/player.model';
 import { PlayersService } from 'src/app/services/players.service';
 import Swal from 'sweetalert2';
 import { NotLoadedComponent } from '../not-loaded/not-loaded.component';
@@ -18,8 +18,8 @@ export class PlayersComponent {
     new NotLoadedComponent();
   players: Player[] = [];
   categories: string[] = [];
-  updatedPlayer: Player = new Player();
-  newPlayer: Player = new Player();
+  updatedPlayer: Player = emptyPlayer;
+  newPlayer: Player = emptyPlayer;
   tagList: Tag[] = [];
   CATEGORY_ORDER: string[] = [];
 
@@ -168,7 +168,7 @@ export class PlayersComponent {
 
         this.transformDisableHideBtns(btnSave, btnCancel, null, 'bg-blue-700');
 
-        this.newPlayer = new Player();
+        this.newPlayer = emptyPlayer;
 
         this.reloadPlayersData();
       },
@@ -189,7 +189,7 @@ export class PlayersComponent {
     });
   }
 
-  toggleUpdateModal(player: Player = new Player()) {
+  toggleUpdateModal(player: Player = emptyPlayer) {
     this.updatedPlayer = player;
     document.getElementById('update-player-modal')?.classList.toggle('hidden');
   }
@@ -200,7 +200,7 @@ export class PlayersComponent {
 
   dismissSaveModal() {
     this.toggleSaveModal();
-    this.newPlayer = new Player();
+    this.newPlayer = emptyPlayer;
   }
 
   dismissUpdateModal() {
@@ -242,7 +242,7 @@ export class PlayersComponent {
 
         this.reloadPlayersData();
 
-        this.updatedPlayer = new Player();
+        this.updatedPlayer = emptyPlayer;
       },
       error: () => {
         Swal.fire({
@@ -385,7 +385,7 @@ export class PlayersComponent {
 
         this.filterByCategory();
 
-        this.updatedPlayer = new Player();
+        this.updatedPlayer = emptyPlayer;
       },
       error: (error) => {
         let errorDescription: string = "Se ha producido un error al eliminar el jugador. ";

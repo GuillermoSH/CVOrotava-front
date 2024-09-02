@@ -1,27 +1,31 @@
-export class Player {
-    id: string;
-	dni: string;
-	name: string;
-	surname1: string;
-	surname2: string;
-	telephone: string;
-	email: string;
-	address: string;
-	birthday: string;
-	category: string;
-	image: string;
+import { z } from "zod";
 
-	constructor(id: string = "", dni: string = "", name: string = "", surname1: string = "", surname2: string = "", telephone: string = "", email: string = "", address: string = "", birthday: string = "", category: string = "", image: string = "") {
-		this.id = id;
-		this.dni = dni;
-		this.name = name;
-		this.surname1 = surname1;
-		this.surname2 = surname2;
-		this.telephone = telephone;
-		this.email = email;
-		this.address = address;
-		this.birthday = birthday;
-		this.category = category;
-		this.image = image;
-	}
-}
+export const PlayerSchema = z.object({
+	id: z.string(),
+	dni: z.string(),
+	name: z.string(),
+	surname1: z.string(),
+	surname2: z.string(),
+	telephone: z.string(),
+	email: z.string(),
+	address: z.string(),
+	birthday: z.string(),
+	category: z.string(),
+	image: z.string(),
+})
+
+export const emptyPlayer = PlayerSchema.parse({
+    id: '',
+	dni: '',
+	name: '',
+	surname1: '',
+	surname2: '',
+	telephone: '',
+	email: '',
+	address: '',
+	birthday: '',
+	category: '',
+	image: '',
+});
+
+export type Player = z.infer<typeof PlayerSchema>;

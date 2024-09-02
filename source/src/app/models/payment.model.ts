@@ -1,19 +1,22 @@
-import { Player } from "./player.model";
+import { z } from "zod";
+import { PlayerSchema } from "./player.model";
 
-export class Payment {
-    id: string;
-	quantity: string;
-	month: number;
-	year: string;
-	concept: string;
-	players: Player[];
+export const PaymentSchema = z.object({
+	id: z.string(),
+	quantity: z.string(),
+	month: z.number(),
+	year: z.string(),
+	concept: z.string(),
+	players: z.array(PlayerSchema),
+})
 
-	constructor(id: string = "", quantity: string = "", month: number = 0, year: string = "", concept: string = "", players: Player[] = []) {
-		this.id = id;
-		this.quantity = quantity;
-		this.month = month;
-		this.year = year;
-		this.concept = concept;
-		this.players = players;
-	}
-}
+export const emptyPayment = PaymentSchema.parse({
+    id: '',
+    quantity: '',
+	month: 0,
+	year: '',
+	concept: '',
+	players: []
+});
+
+export type Payment = z.infer<typeof PaymentSchema>;
