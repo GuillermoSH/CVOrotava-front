@@ -8,14 +8,14 @@ This repository contains the frontend of the **CVOrotava** application, develope
 
 ## 📋 Índice / Table of Contents 📋
 
-- [⚙️ Requisitos Previos / Prerequisites](#⚙️-requisitos-previos--prerequisites)
-- [🛠️ Configuración Inicial / Initial Setup](#🛠️-configuraci%C3%B3n-inicial--initial-setup)
-- [▶️ Ejecución del Proyecto / Running the Project](#▶️-ejecuci%C3%B3n-del-proyecto--running-the-project)
-- [📂 Estructura del Proyecto / Project Structure](#📂-estructura-del-proyecto--project-structure)
-- [🔧 Scripts Disponibles / Available Scripts](#🔧-scripts-disponibles--available-scripts)
-- [🚀 Tecnologías Utilizadas / Technologies Used](#🚀-tecnolog%C3%ADas-utilizadas--technologies-used)
-- [🤝 Contribución / Contribution](#🤝-contribuci%C3%B3n--contribution)
-- [📜 Licencia / License](#📜-licencia--license)
+- [⚙️ Requisitos Previos / Prerequisites](#%EF%B8%8F-configuración-inicial--initial-setup)
+- [🛠️ Configuración Inicial / Initial Setup](#%EF%B8%8F-configuración-inicial--initial-setup)
+- [▶️ Ejecución del Proyecto / Running the Project](#%EF%B8%8F-ejecución-del-proyecto--running-the-project)
+- [📂 Estructura del Proyecto / Project Structure](#-estructura-del-proyecto--project-structure)
+- [🔧 Scripts Disponibles / Available Scripts](#-scripts-disponibles--available-scripts)
+- [🚀 Tecnologías Utilizadas / Technologies Used](#-tecnolog%C3%ADas-utilizadas--technologies-used)
+- [🤝 Contribución / Contribution](#-contribuci%C3%B3n--contribution)
+- [📜 Licencia / License](#-licencia--license)
 
 ---
 
