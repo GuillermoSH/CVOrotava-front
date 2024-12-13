@@ -8,7 +8,7 @@ This repository contains the frontend of the **CVOrotava** application, develope
 
 ## 📋 Índice / Table of Contents 📋
 
-- [⚙️ Requisitos Previos / Prerequisites](#%EF%B8%8F-configuración-inicial--initial-setup)
+- [⚙️ Requisitos Previos / Prerequisites](#%EF%B8%8F-requisitos-previos--prerequisites)
 - [🛠️ Configuración Inicial / Initial Setup](#%EF%B8%8F-configuración-inicial--initial-setup)
 - [▶️ Ejecución del Proyecto / Running the Project](#%EF%B8%8F-ejecución-del-proyecto--running-the-project)
 - [📂 Estructura del Proyecto / Project Structure](#-estructura-del-proyecto--project-structure)
