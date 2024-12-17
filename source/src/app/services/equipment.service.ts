@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment.development';
   providedIn: 'root'
 })
 export class EquipmentService {
-  private url: string = environment.apiUrl + "/equipment";
+  private url: string = environment.apiUrl + "/equipments";
 
   constructor(private _http: HttpClient) { }
 
