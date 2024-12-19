@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 export class PaymentService {
   private url: string = environment.apiUrl + '/payments';
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient) { }
 
   getPayments(): Observable<Payment[]> {
     return this._http.get<Payment[]>(this.url);
@@ -58,5 +58,13 @@ export class PaymentService {
 
   getAvailableSeasons(): Observable<string[]> {
     return this._http.get<string[]>(this.url + '/seasons');
+  }
+
+  getDefaultersById(id: string): Observable<Player[]> {
+    return this._http.get<Player[]>(`${this.url}/${id}/defaulters`);
+  }
+
+  getDefaultersByMonth(month: string, year: string): Observable<Player[]> {
+    return this._http.get<Player[]>(`${this.url}/${year}/${month}/defaulters`);
   }
 }
