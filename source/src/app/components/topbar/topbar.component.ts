@@ -24,6 +24,6 @@ export class TopbarComponent {
   }
 
   logout() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['']);
   }
 }
