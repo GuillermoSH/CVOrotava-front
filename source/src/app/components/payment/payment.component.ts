@@ -23,12 +23,10 @@ export class PaymentComponent {
   currentSeason: string = '';
   selectedSeason: string = '';
 
-  constructor(private paymentService: PaymentService) {}
+  constructor(private paymentService: PaymentService) { }
 
   ngOnInit() {
-    let currentYear = new Date().getFullYear();
-    this.currentSeason = currentYear.toString().concat('-', (currentYear + 1).toString());
-    this.selectedSeason = this.currentSeason;
+    this.selectedSeason = this.getCurrentSeason();
     this.reloadPaymentsData();
     this.months = [
       'enero',
@@ -167,7 +165,7 @@ export class PaymentComponent {
     this.paymentService.getAvailableSeasons().subscribe({
       next: (seasons: string[]) => {
         this.seasons = [...seasons];
-        if(!this.seasons.includes(this.currentSeason)) {
+        if (!this.seasons.includes(this.currentSeason)) {
           this.seasons = [...this.seasons, this.currentSeason]
         }
       },
@@ -190,16 +188,16 @@ export class PaymentComponent {
           wrapper?.classList.remove('hidden');
           document.getElementById('btn-reload')?.classList.add('hidden');
           document.getElementById('btn-show_payment_modal')?.classList.add('hidden');
-        } else if(payments.length === 0) {
+        } else if (payments.length === 0) {
           this.loaderErrorMsg =
-          'Parece que no existen pagos aún. ¡Es hora de formalizar un par de ellos!';
+            'Parece que no existen pagos aún. ¡Es hora de formalizar un par de ellos!';
           wrapper?.classList.add('hidden');
           notLoadedWrapper?.classList.remove('hidden');
           notLoadedWrapper2?.classList.add('hidden');
           document.getElementById('btn-reload')?.classList.add('hidden');
           document
-          .getElementById('btn-show_payment_modal')
-          ?.classList.remove('hidden');
+            .getElementById('btn-show_payment_modal')
+            ?.classList.remove('hidden');
         } else {
           wrapper?.classList.remove('hidden');
           notLoadedWrapper?.classList.add('hidden');
@@ -221,5 +219,12 @@ export class PaymentComponent {
           ?.classList.add('hidden');
       },
     });
+  }
+
+  private getCurrentSeason(): string {
+    let currentYear = new Date().getFullYear();
+    let currentMonth = new Date().getMonth();
+
+    return this.currentSeason = currentMonth < 9 ? (currentYear - 1).toString().concat('-', currentYear.toString()) : currentYear.toString().concat('-', (currentYear + 1).toString());
   }
 }
