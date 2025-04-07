@@ -58,7 +58,7 @@
         <p class="font-bold">{{player.name}} {{player.surname1}} {{player.surname2}}</p>
         <p class="text-neutral-500">{{player.dni}}</p>
         <div class="text-neutral-500 flex flex-wrap gap-x-3">
-          <div class="font-bold">{{player.category}}</div><div>{{player.birthday}}</div>
+          <div class="font-bold">{{player.category}}</div><div>{{player.birthday | dateFormat}}</div>
         </div>
       </div>
       <span class="rand-circle absolute bg-blue-100/50 h-56 aspect-square rounded-full right-[43px] top-[-8px] -z-[10] blur-xl duration-500"></span>
