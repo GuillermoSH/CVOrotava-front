@@ -2526,20 +2526,3 @@ video {
 .\[\&\>\*\:nth-child\(3\)\]\:hover\:animate-shake:hover>*:nth-child(3) {
   animation: shake 0.3s ease-out;
 }
-
-.\[\&\>span\]\:hover\:right-\[200px\]:hover>span {
-  right: 200px;
-}
-
-.\[\&\>span\]\:hover\:top-\[-200px\]:hover>span {
-  top: -200px;
-}
-
-.\[\&\>span\]\:hover\:h-72:hover>span {
-  height: 18rem;
-}
-
-.\[\&\>span\]\:hover\:bg-blue-200:hover>span {
-  --tw-bg-opacity: 1;
-  background-color: rgb(191 219 254 / var(--tw-bg-opacity));
-}

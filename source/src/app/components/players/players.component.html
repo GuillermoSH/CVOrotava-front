@@ -46,7 +46,7 @@
   </section>
   <section id="players-list" class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3">
     <a *ngFor="let player of players"
-      class="relative border-[0.5px] hover:cursor-pointer border-blue-400 z-0 rounded-lg max-w-full min-w-[calc(1/3*100%)] bg-neutral-300/70 hover:bg-blue-100/70 duration-200 flex items-center gap-5 p-5 max-h-[120px] overflow-hidden md:[&>#details-label]:hover:h-9 [&>span]:hover:bg-blue-200 [&>span]:hover:top-[-200px] [&>span]:hover:right-[200px] [&>span]:hover:h-72 md:[&>#details-label>i]:hover:opacity-100"
+      class="relative border-[0.5px] hover:cursor-pointer border-blue-400 z-0 rounded-lg max-w-full min-w-[calc(1/3*100%)] bg-neutral-300/70 hover:bg-blue-100/70 duration-200 flex items-center gap-5 p-5 max-h-[120px] overflow-hidden md:[&>#details-label]:hover:h-9 md:[&>#details-label>i]:hover:opacity-100"
       (click)="toggleUpdateModal(player)">
       <div class="w-20 aspect-square rounded-full overflow-hidden">
         <img class="h-full w-full object-cover" [src]="showPlayerImage(player)" alt="">
